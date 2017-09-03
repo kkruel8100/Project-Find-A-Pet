@@ -88,4 +88,35 @@ i {
 	margin-right: 10px;
 }
 
+.card {
+	margin-bottom: 30px;
 
+}
+
+.card-header {
+	background-color: #337ab7;
+	color: #fff;
+	font-size: 1.3rem;
+}
+
+._jw-tpk-container {
+	height: 155px;
+}
+
+ol {
+	margin-bottom: .4rem;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef;
+}
+th {
+    text-align: left;
+}

@@ -21,30 +21,51 @@ $(document).ready(function() {
   var age = ["Baby", "Young", "Adult", "Senior"];
   var results = 25;
 
-  //Dropdown functions
+  //Search Found/Lost variables
+  var lostAndFound = ["Found", "Lost"];
+  var lFname = "";
+  var lFanimal = "";
+  var lFsex = "";
+  var lFsize = "";
+  var lFage = "";
+
+
+//!!Update id names when moved to new html page - Not able to populate two ids on same page -- Impacts both click functions
+//May decide to keep two set of ids
+  //Dropdown functions for html page
   function animalSelect() {
     for (i=0; i<animal.length; i++) {
       $("#animalArray").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
+      $("#animalUpdate").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
     }    
   }
 
   function sexSelect() {
     for (i=0; i<sex.length; i++) {
-      $("#sexArray").append("<option data-animal='" + sex[i] + "'>" + sex[i] + "</option>");
+      $("#sexArray").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
+      $("#sexUpdate").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
     }    
   }
 
   function sizeSelect() {
     for (i=0; i<size.length; i++) {
-      $("#sizeArray").append("<option data-animal='" + size[i] + "'>" + size[i] + "</option>");
+      $("#sizeArray").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
+      $("#sizeUpdate").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
     }    
   }
 
   function ageSelect() {
     for (i=0; i<age.length; i++) {
-      $("#ageArray").append("<option data-animal='" + age[i] + "'>" + age[i] + "</option>");
+      $("#ageArray").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
+      $("#ageUpdate").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
     }    
   }
+
+  function lostAndFoundSelect() {
+    for (i=0; i<lostAndFound.length; i++) {
+      $("#lostFound_input").append("<option data-category='" + lostAndFound[i] + "'>" + lostAndFound[i] + "</option>");
+      }    
+    }
 
   //function to clear zip field after submit key
   function clearField() {
@@ -56,6 +77,8 @@ $(document).ready(function() {
   sexSelect();
   sizeSelect();
   ageSelect();
+  lostAndFoundSelect();
+
 
   var url = "http://api.petfinder.com/pet.find?format=json&key=";
   var api = "9503ebe5eee4d378650ea8929cf9c5b7";
@@ -67,9 +90,9 @@ $(document).ready(function() {
       $(document).on("click", ".search", function search () {
         var aniSearch = $("#animalArray").val();
         var sizSearch = $("#sizeArray").val();
-        var sexSearch = $("#sexArray").val().trim(); 
-        var ageSearch = $("#ageArray").val().trim();
-        var zipSearch = $("#zipCode").val().trim();
+        var sexSearch = $("#sexArray").val(); 
+        var ageSearch = $("#ageArray").val();
+        var zipSearch = $("#zipCode").val();
 
         console.log(aniSearch);
         console.log(sizSearch);
@@ -77,11 +100,6 @@ $(document).ready(function() {
         console.log(ageSearch);
         console.log(zipSearch);
 
-      // var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-      // url += "?" + $.param({
-      //   "api-key": "b80c2fd13eed469d84e884b3b42ba135",
-      //   "q": q
-      // });
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -93,34 +111,30 @@ $(document).ready(function() {
         for (var i = 0; i < results; i++) {
           var newDiv = $("<div class='callback'>" + i);
           var headline = res[i].name.$t;
-          var head = $("<h4>").text(headline);
+          var head = $("<h4>").text("My name is: " + headline);
           head.prepend("<span class='label label-primary'>" + (i+1) + "</span>");
           newDiv.append(head);
 
-          // var animal = res[i].animal.$t
-          // p = $("<p>").text(animal);
-          // newDiv.append(p);
+          var img = res[i].media.photos.photo[0].$t; 
+          var imgResult = "<img src=" + img + ">";
+          newDiv.append(imgResult);
 
-          // if (res[i].byline && res[i].byline.hasOwnProperty("original")) {
-          //   p = $("<p>").text(res[i].byline.original);
-          //   newDiv.append(p);
-          // }
-          // else {
-          //   p = $("<p>").text("Byline Not Available");
-          //   newDiv.append(p);
-          // }
-          // if (res[i].pub_date != "null") {
-          //   p = $("<p>").html("Publication Date: "+ (res[i].pub_date));
-          //   newDiv.append(p);
-          // }
-          // else {
-          //   p = $("<p>").text("Publication Date Not Available");
-          // }
-          // var pix = 0;        
-          // var webURL = res[i].media.photos.photo.pix.$t;
-          // console.log(webURL);        
-          // p = $("<a href>").html(webURL);
-          // newDiv.append(p);
+          var animal = res[i].animal.$t;
+          var aniResult = $("<p>").text(animal);
+          newDiv.append(aniResult);
+
+          var age = res[i].age.$t;
+          var ageResult = $("<p>").text("Age: " + age);
+          newDiv.append(ageResult);
+
+          var sex = res[i].sex.$t;
+          var sexResult = $("<p>").text("Gender: " + sex);
+          newDiv.append(sexResult);
+
+          var size = res[i].size.$t;
+          var sizResult = $("<p>").text("Size: " + size);
+          newDiv.append(sizResult);
+ 
           $(".results").append(newDiv);
         }
 
@@ -129,6 +143,55 @@ $(document).ready(function() {
 
       clearField();   
 
-     });//end of search click function     
+     });//end of search click function  
+
+     // Capture Add a Pet Click
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+//Need to check ids if update form when new page is added  
+      lostAndFound = $("#lostFound_input").val();
+      lFname = $("#name_input").val().trim();    
+      lFanimal = $("#animalUpdate").val();
+      lFsize = $("#sizeUpdate").val();
+      lFsex = $("#sexUpdate").val();
+      lFage = $("#ageUpdate").val();
+      lFzip = $("#zipUpdate").val().trim();
+
+      // Code for the push
+      database.ref().push({
+        lostAndFound: lostAndFound,
+        lFname: lFname,
+        lFanimal: lFanimal,
+        lFsize: lFsize,
+        lFsex: lFsex,
+        lFage: lFage,
+        lFzip: lFzip,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+
+      // Code to clear input fields
+      $("#zipUpdate").val("");
+
+    });
+
+    // Update Train Schedule
+    database.ref().on("child_added", function(childSnapshot) {
+
+      // full list of pets
+      $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
+         " </td><td> " + childSnapshot.val().lFname +
+         " </td><td> " + childSnapshot.val().lFanimal +
+         " </td><td> " + childSnapshot.val().lFsize +
+         " </td><td> " + childSnapshot.val().lFsex +
+         " </td><td> " + childSnapshot.val().lFage +
+         " </td><td> " + childSnapshot.val().lFzip +
+         " </td><td> " + "buttonEdit" +
+         " </td><td> " + "buttonDelete" + " </td></tr>");
+
+      // Handle the errors
+    }, function(errorObject) {
+       console.log("Errors handled: " + errorObject.code);
+      });
+  
  
 });//document ready
