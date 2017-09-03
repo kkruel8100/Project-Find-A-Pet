@@ -2,44 +2,59 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>KK Pet Project</title>
 	<!-- Custom CSS -->
-	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+	<link rel="stylesheet" type="text/css" href="NYT_style.css">
 
 </head>
 <body>
 	<div id="test"></div>
-	<div class="row">
+	<div class="row"><!--Search Row-->
     	<div class="col-sm-12">
-			<div>	
+			<div><!--Start of form div-->	
 		    	<form id="query">
 		    		<h3><i class="fa fa-list-alt"></i>Search Parameters</h3> 
-				  	<div class="form-group field_1">
-		    			<label for="Textarea1">Search Term:</label>
-		    			<textarea class="form-control" id="Textarea1" rows="1"></textarea>
+				  	<div class="form-group">
+		    			<label for="Select">Animal</label>
+		    			<select class="form-control" id="animalArray">
+			      		</select>
 		  			</div>
 			 	  	<div class="form-group">
-		    			<label for="Select1">Number of Records to Retrieve: </label>
-		    			<select class="form-control" id="Select1">
-			      			<option>1</option>
-			      			<option>5</option>
-			      			<option>10</option>
+		    			<label for="Select">Size</label>
+		    			<select class="form-control" id="sizeArray">
 		    			</select>
 				  	</div>
-				  	<div class="form-group field_2">
-		    			<label for="Textarea2">Start Year :</label>
-		    			<textarea class="form-control" id="Textarea2" rows="1"></textarea>
-		  			</div>
-		  			<div class="form-group field_3">
-		    			<label for="Textarea3">End Year :</label>
-		    			<textarea class="form-control" id="Textarea3" rows="1"></textarea>
+				  	<div class="form-group">
+		    			<label for="Select">Sex</label>
+		    			<select class="form-control" id="sexArray">
+		    			</select>
+				  	</div>
+				  	<div class="form-group">
+		    			<label for="Select">Age</label>
+		    			<select class="form-control" id="ageArray">
+		    			</select>
+				  	</div>
+				  	<div class="form-group field_1">
+		    			<label for="Textarea1">Location</label>
+		    			
+		    			<textarea class="form-control" id="Textarea1" rows="1"></textarea>
 		  			</div>
 				  	<button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
 				  	<button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
 				</form>
-		  	</div>
-		</div> 	
-	</div>	
+		  	</div><!--End of form div-->
+		</div> 
+	</div><!--End of search Row-->
+	<div class="row"><!--Start of results Row-->
+		<div class="col-sm-12">
+			<div>
+		    	<div class="results">
+					<h3><i class="fa fa-table"></i>Search Results</h3> 	
+				</div>
+			</div>	
+		</div>
+	</div><!--End of results Row-->	
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Firebase Javascript -->
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>

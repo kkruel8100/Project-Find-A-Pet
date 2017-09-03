@@ -1,0 +1,91 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #fff;
+	background-color: #20315a;
+}
+
+p, label {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #20315a;
+	font-weight: bold;
+}
+
+h3 {
+	padding: 10px 20px;
+	font-size: 17px;
+	font-weight: 400;
+}
+
+.jumbotron {
+	background-color: #20315a;
+}
+
+.display-3 {
+	font-weight: bold;
+	font-size: 39px;
+	text-align: center;
+	box-sizing: border-box;
+	margin-bottom: 0;
+}
+
+.fa-newspaper-o {
+	box-sizing: border-box;
+	color: #fff;
+	margin-right: .3em;
+}
+
+form, .results {
+	border: 1px solid #20315a;
+	margin: 0 20px 40px;
+	display: block;
+	padding-bottom: 20px;
+}
+
+
+.form-group {
+	padding: 10px 20px 0;
+} 
+
+.btn {
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+i {
+	padding-right: 5px;
+}
+
+.results .callback {
+	padding: 15px 10px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	margin: 15px 15px 10px;
+}
+
+.results h4 {
+	background-color: #f5f5f5;
+	color: #20315a;
+	font-size: 26px;
+	font-weight: bold;
+
+}
+
+.results p {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.results a {
+	color: #18bc9c;
+}
+
+.results .label {
+	background-color: #20315a;
+	color: #ffffff;
+	font-size: 16px;
+	border-radius: 5px;
+	padding: 4px 15px;
+	margin-right: 10px;
+}
+
+
