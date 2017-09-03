@@ -15,7 +15,7 @@ $(document).ready(function() {
   // Initial Values
 
   //Search Petfinder variables
-  var animal = ["Cat", "Dog"];
+  var animal = ["cat", "dog"];//Note: API only accepts lower case animal in search url
   var sex = ["F", "M"];
   var size = ["S", "M", "L", "XL"];
   var age = ["Baby", "Young", "Adult", "Senior"];
@@ -70,6 +70,11 @@ $(document).ready(function() {
   //function to clear zip field after submit key
   function clearField() {
     $("#zipCode").val("");
+    $("#query")[0].reset();
+    $("#addPet")[0].reset();
+    $("#name_input").val("");
+    $("#zipUpdate").val("");
+    console.log("can you see me")
     }
 
   //Run dropdown functions
@@ -82,6 +87,7 @@ $(document).ready(function() {
 
   var url = "http://api.petfinder.com/pet.find?format=json&key=";
   var api = "9503ebe5eee4d378650ea8929cf9c5b7";
+
   var search = "&location=85224";
   var queryURL = url + api + search;
   console.log(queryURL);
@@ -100,6 +106,9 @@ $(document).ready(function() {
         console.log(ageSearch);
         console.log(zipSearch);
 
+        var queryURL = url + api + "&animal=" + aniSearch + "&size=" + sizSearch + "&sex=" + sexSearch + "&age=" + ageSearch + "&location=" + zipSearch;
+        console.log(queryURL);
+
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -115,7 +124,7 @@ $(document).ready(function() {
           head.prepend("<span class='label label-primary'>" + (i+1) + "</span>");
           newDiv.append(head);
 
-          var img = res[i].media.photos.photo[0].$t; 
+          var img = res[i].media.photos.photo[3].$t; 
           var imgResult = "<img src=" + img + ">";
           newDiv.append(imgResult);
 
@@ -170,11 +179,11 @@ $(document).ready(function() {
       });
 
       // Code to clear input fields
-      $("#zipUpdate").val("");
+      clearField();
 
     });
 
-    // Update Train Schedule
+    // Update Pet List
     database.ref().on("child_added", function(childSnapshot) {
 
       // full list of pets
@@ -185,13 +194,13 @@ $(document).ready(function() {
          " </td><td> " + childSnapshot.val().lFsex +
          " </td><td> " + childSnapshot.val().lFage +
          " </td><td> " + childSnapshot.val().lFzip +
-         " </td><td> " + "buttonEdit" +
-         " </td><td> " + "buttonDelete" + " </td></tr>");
+         " </td><td> " + "<button class=edit style='background: url(icons/edit.png)'></button>" +
+         " </td><td> " + "<button class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
 
       // Handle the errors
     }, function(errorObject) {
        console.log("Errors handled: " + errorObject.code);
       });
-  
+    
  
 });//document ready
