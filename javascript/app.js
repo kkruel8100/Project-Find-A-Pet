@@ -65,7 +65,7 @@ $(document).ready(function() {
     for (i=0; i<lostAndFound.length; i++) {
       $("#lostFound_input").append("<option data-category='" + lostAndFound[i] + "'>" + lostAndFound[i] + "</option>");
       }    
-    }
+  }
 
   //function to clear zip field after submit key
   function clearField() {
@@ -74,8 +74,7 @@ $(document).ready(function() {
     $("#addPet")[0].reset();
     $("#name_input").val("");
     $("#zipUpdate").val("");
-    console.log("can you see me")
-    }
+  }
 
   //Run dropdown functions
   animalSelect();
@@ -93,28 +92,30 @@ $(document).ready(function() {
   console.log(queryURL);
   
   //Function for search button to capture variables and displayPetFinds
-      $(document).on("click", ".search", function search () {
-        var aniSearch = $("#animalArray").val();
-        var sizSearch = $("#sizeArray").val();
-        var sexSearch = $("#sexArray").val(); 
-        var ageSearch = $("#ageArray").val();
-        var zipSearch = $("#zipCode").val();
+  $(document).on("click", ".search", function search () {
+        
+    var aniSearch = $("#animalArray").val();
+    var sizSearch = $("#sizeArray").val();
+    var sexSearch = $("#sexArray").val(); 
+    var ageSearch = $("#ageArray").val();
+    var zipSearch = $("#zipCode").val();
 
-        console.log(aniSearch);
-        console.log(sizSearch);
-        console.log(sexSearch);
-        console.log(ageSearch);
-        console.log(zipSearch);
+    console.log(aniSearch);
+    console.log(sizSearch);
+    console.log(sexSearch);
+    console.log(ageSearch);
+    console.log(zipSearch);
 
-        var queryURL = url + api + "&animal=" + aniSearch + "&size=" + sizSearch + "&sex=" + sexSearch + "&age=" + ageSearch + "&location=" + zipSearch;
-        console.log(queryURL);
+    var queryURL = url + api + "&animal=" + aniSearch + "&size=" + sizSearch + "&sex=" + sexSearch + "&age=" + ageSearch + "&location=" + zipSearch;
+    console.log(queryURL);
 
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-          }).done(function(response) {
-            console.log(response);
-            var res = response.petfinder.pets.pet;
+    if (zipSearch.length===5) {
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+        console.log(response);
+        var res = response.petfinder.pets.pet;
 
       //API search default is 25 results
         for (var i = 0; i < results; i++) {
@@ -145,26 +146,33 @@ $(document).ready(function() {
           newDiv.append(sizResult);
  
           $(".results").append(newDiv);
-        }
+        }//end of for
 
-      console.log(res);
-      });
+        console.log(res);
+      });//end of response function
 
       clearField();   
+    }//end of if statement
 
-     });//end of search click function  
+//Need to replace alert with Modal JS      
+    else {
+      alert("Please verify zip code");
+    }
+  });//end of search click function  
 
      // Capture Add a Pet Click
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
 //Need to check ids if update form when new page is added  
-      lostAndFound = $("#lostFound_input").val();
-      lFname = $("#name_input").val().trim();    
-      lFanimal = $("#animalUpdate").val();
-      lFsize = $("#sizeUpdate").val();
-      lFsex = $("#sexUpdate").val();
-      lFage = $("#ageUpdate").val();
-      lFzip = $("#zipUpdate").val().trim();
+    lostAndFound = $("#lostFound_input").val();
+    lFname = $("#name_input").val().trim();    
+    lFanimal = $("#animalUpdate").val();
+    lFsize = $("#sizeUpdate").val();
+    lFsex = $("#sexUpdate").val();
+    lFage = $("#ageUpdate").val();
+    lFzip = $("#zipUpdate").val().trim();
+
+    if (lFzip.length===5 && lFname.length >= 1) {
 
       // Code for the push
       database.ref().push({
@@ -180,27 +188,33 @@ $(document).ready(function() {
 
       // Code to clear input fields
       clearField();
+    }//end of if
 
-    });
+//Need to replace alert with Modal JS    
+    else {
+      alert("Please verify name and zip")
+    }//end of else
 
-    // Update Pet List
-    database.ref().on("child_added", function(childSnapshot) {
+  });//end of click
 
-      // full list of pets
-      $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
-         " </td><td> " + childSnapshot.val().lFname +
-         " </td><td> " + childSnapshot.val().lFanimal +
-         " </td><td> " + childSnapshot.val().lFsize +
-         " </td><td> " + childSnapshot.val().lFsex +
-         " </td><td> " + childSnapshot.val().lFage +
-         " </td><td> " + childSnapshot.val().lFzip +
-         " </td><td> " + "<button class=edit style='background: url(icons/edit.png)'></button>" +
-         " </td><td> " + "<button class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
+  // Update Pet List
+  database.ref().on("child_added", function(childSnapshot) {
+
+    // full list of pets
+    $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
+      " </td><td> " + childSnapshot.val().lFname +
+      " </td><td> " + childSnapshot.val().lFanimal +
+      " </td><td> " + childSnapshot.val().lFsize +
+      " </td><td> " + childSnapshot.val().lFsex +
+      " </td><td> " + childSnapshot.val().lFage +
+      " </td><td> " + childSnapshot.val().lFzip +
+      " </td><td> " + "<button class=edit style='background: url(icons/edit.png)'></button>" +
+      " </td><td> " + "<button class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
 
       // Handle the errors
-    }, function(errorObject) {
-       console.log("Errors handled: " + errorObject.code);
-      });
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+    });
     
  
 });//document ready
