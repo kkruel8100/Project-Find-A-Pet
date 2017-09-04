@@ -76,6 +76,16 @@ $(document).ready(function() {
     $("#zipUpdate").val("");
   }
 
+  //function to remove Top Articles results to be used in multiple places
+  function callback() {
+    $(".callback").remove();
+  }
+
+  //function for clear button to remove elements in callback area
+  $(".clear").on("click", function clear () {
+    callback();
+  }); 
+
   //Run dropdown functions
   animalSelect();
   sexSelect();
@@ -93,7 +103,9 @@ $(document).ready(function() {
   
   //Function for search button to capture variables and displayPetFinds
   $(document).on("click", ".search", function search () {
-        
+      
+    callback();
+
     var aniSearch = $("#animalArray").val();
     var sizSearch = $("#sizeArray").val();
     var sexSearch = $("#sexArray").val(); 
@@ -125,9 +137,16 @@ $(document).ready(function() {
           head.prepend("<span class='label label-primary'>" + (i+1) + "</span>");
           newDiv.append(head);
 
-          var img = res[i].media.photos.photo[3].$t; 
-          var imgResult = "<img src=" + img + ">";
-          newDiv.append(imgResult);
+          if (res[i].media.hasOwnProperty("photos")) {  
+            var img = res[i].media.photos.photo[3].$t; 
+            var imgResult = "<img src=" + img + ">";
+            console.log(img);
+            newDiv.append(imgResult);
+            }
+          else {
+            var imgResult = "<img src='icons/adopt-placeholder.png'>";
+            newDiv.append(imgResult);
+            }
 
           var animal = res[i].animal.$t;
           var aniResult = $("<p>").text(animal);
