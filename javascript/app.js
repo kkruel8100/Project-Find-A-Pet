@@ -219,6 +219,8 @@ $(document).ready(function() {
   // Update Pet List
   database.ref().on("child_added", function(childSnapshot) {
 
+    id = childSnapshot.key;//captures unique key value
+
     // full list of pets
     $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
       " </td><td> " + childSnapshot.val().lFname +
@@ -227,13 +229,25 @@ $(document).ready(function() {
       " </td><td> " + childSnapshot.val().lFsex +
       " </td><td> " + childSnapshot.val().lFage +
       " </td><td> " + childSnapshot.val().lFzip +
-      " </td><td> " + "<button class=edit style='background: url(icons/edit.png)'></button>" +
-      " </td><td> " + "<button class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
+      " </td><td> " + "<button id='"+id+"'class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
 
       // Handle the errors
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
     });
     
+  //delete from view for user and on firebase - need to restrict to admin
+  //alerts need to be replaced with modals
+  $(document).on("click", ".delete", function(event) {
+    var childKey = this.id;
+    if (confirm("Are you sure you want to delete this notification?") === true) {
+      alert("Removed: " + childKey);
+      database.ref(childKey).remove();
+      $(this).closest("tr").remove();
+        
+    } else {
+      alert("Cancelled");
+    }
+  });  
  
 });//document ready
