@@ -13,7 +13,7 @@
     	<div class="col-sm-12">
 			<div><!--Start of form div - Search Pet API-->	
 		    	<form id="query">
-		    		<h3><i class="fa fa-list-alt"></i>Search Parameters</h3> 
+		    		<h3><i class="fa fa-list-alt"></i>Search Shelters Parameters</h3> 
 				  	<div class="form-group">
 		    			<label for="Select">Animal</label>
 		    			<select class="form-control" id="animalArray">
@@ -69,6 +69,10 @@
 						    <label>Pet Name</label>
 						    <input type="text" class="form-control" id="name_input"></input>
 						  </div>
+						  <div class="form-group">
+						    <label>Date Lost or Found</label>	
+						    <input id="date" type="date">
+						  </div>  
 		<!--Update id names when moved to new html page - Not able to populate two ids on same page - Impacts both click functions-->
 		<!--May decide to keep two set of ids-->
 						  <div class="form-group">
@@ -96,6 +100,10 @@
 						    <label>Zip Code</label>
 						    <input type="text" class="form-control" id="zipUpdate"></input>
 						  </div>
+						  <div class="image-upload">
+							  <label for="file-input">Image Upload</label>
+							<input id="file-input" type="file" />
+						  </div>
 						  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
 					</form><!--end of form -->
 				</div><!--end of card body -->
@@ -112,6 +120,7 @@
 					    <tr>
 					      <th>Lost or Found</th> 
 					      <th>Pet Name</th>
+					      <th>Date Lost or Found</th>
 					      <th>Animal</th>
 					      <th>Size</th>
 					      <th>Sex</th>
@@ -128,6 +137,42 @@
 			</div><!--end of card -->
 	    </div>
 	  </div><!--End of Lost-Found Results-->
+<!--THIS IS FOR SEARCH OF FIREBASE - HARDCODED OPTIONS TO GET IT TO WORK ON SAME PAGE-->
+	<div class="row"><!--Search Row-->
+    	<div class="col-sm-12">
+			<div><!--Start of form div - Search Firebase-->	
+		    	<form id="query">
+		    		<h3><i class="fa fa-list-alt"></i>Search Firebase Parameters</h3> 
+		    		<div class="form-group">
+						    <label>Pet Name</label>
+						    <input type="text" class="form-control" id="nameFB"></input>
+						  </div>
+				  	<div class="form-group">
+		    			<label for="Select">Animal</label>
+		    			<select class="form-control" id="animalFB">
+		    				<option>cat</option>
+		    				<option>dog</option>
+			      		</select>
+		  			</div>
+			 	  	
+				  	<div class="form-group">
+		    			<label for="Select">Sex</label>
+		    			<select class="form-control" id="sexFB">
+		    				<option>F</option>
+		    				<option>M</option>
+		    			</select>
+				  	</div>
+				  	
+				  	
+				  	<button type="button" class="btn btn-secondary firebase_search"><i class="fa fa-search"></i>Search</button>
+				  	
+				</form>
+		  	</div><!--End of form div-->
+		</div> 
+	</div><!--End of search Row-->
+
+
+
 
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

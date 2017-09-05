@@ -28,44 +28,9 @@
 						    <label>Pet Name</label>
 						    <input type="text" class="form-control" id="name_input"></input>
 						  </div>
-		<!--Update id names when moved to new html page - Not able to populate two ids on same page - Impacts both click functions-->
-		<!--May decide to keep two set of ids-->
-						  <div class="form-group">
-			    			<label for="Select">Animal</label>
-			    			<select class="form-control" id="animalUpdate">
-			    			<option>cat</option>
-			    			<option>dog</option>
-				      		</select>
-		  				  </div>
-					 	  <div class="form-group">
-				    		<label for="Select">Size</label>
-				    		<select class="form-control" id="sizeUpdate">
-				    		<option>S</option>
-				    		<option>M</option>
-				    		<option>L</option>
-				    		<option>XL</option>
-				    		</select>
-						  </div>
-				  		  <div class="form-group">
-		    				<label for="Select">Sex</label>
-		    				<select class="form-control" id="sexUpdate">
-		    				<option>F</option>
-		    				<option>M</option>
-		    				</select>
-				  		  </div>
-				  	      <div class="form-group">
-		    				<label for="Select">Age</label>
-		    			    <select class="form-control" id="ageUpdate">
-		    			    <option>Baby</option>
-		    			    <option>Young</option>
-		    			    <option>Adult</option>
-		    			    <option>Senior</option>
-		    			    </select>
-				  		  </div>
-						  
-						  <div class="form-group">
-						    <label>Zip Code</label>
-						    <input type="text" class="form-control" id="zipUpdate"></input>
+						  <div class="image-upload">
+							  <label for="file-input">Image Upload</label>
+							<input id="file-input" type="file" />
 						  </div>
 						  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
 					</form><!--end of form -->
@@ -120,8 +85,13 @@
 	  var lFanimal = "";
 	  var lFsex = "";
 	  var lFsize = "";
-	  var lFage = "";		
+	  var lFage = "";	
+	  var lFzip = "";
+	  var lFimage = "";	
 	  var database = firebase.database();
+
+	  // Create a root reference
+	  var storageRef = firebase.storage().ref();
 
 	  // Capture Add a Pet Click
   	  $("#submit").on("click", function(event) {
@@ -129,23 +99,23 @@
 		//Need to check ids if update form when new page is added  
 	    lostAndFound = $("#lostFound_input").val();
 	    lFname = $("#name_input").val().trim();    
-	    lFanimal = $("#animalUpdate").val();
-	    lFsize = $("#sizeUpdate").val();
-	    lFsex = $("#sexUpdate").val();
-	    lFage = $("#ageUpdate").val();
-	    lFzip = $("#zipUpdate").val().trim();
+	    
+	    lFimage = $("#file-input").val();
 
-    	if (lFzip.length===5 && lFname.length >= 1) {
+	    var imageRef = storageRef.child(lFimage);
+
+    	if (lFname.length >= 1) {
+
+    	  ref.put(lFimage).then(function(snapshot) {
+  			console.log('Uploaded a file!');
+			});	
 
 	      // Code for the push
 	      database.ref().push({
 	        lostAndFound: lostAndFound,
 	        lFname: lFname,
-	        lFanimal: lFanimal,
-	        lFsize: lFsize,
-	        lFsex: lFsex,
-	        lFage: lFage,
-	        lFzip: lFzip,
+	        
+	        lFimage: imageRef,
 	        dateAdded: firebase.database.ServerValue.TIMESTAMP
 	      });
 

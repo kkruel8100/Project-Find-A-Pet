@@ -24,10 +24,12 @@ $(document).ready(function() {
   //Search Found/Lost variables
   var lostAndFound = ["Found", "Lost"];
   var lFname = "";
+  var lFdate = "";
   var lFanimal = "";
   var lFsex = "";
   var lFsize = "";
   var lFage = "";
+  var lFzip = "";
 
 
 //!!Update id names when moved to new html page - Not able to populate two ids on same page -- Impacts both click functions
@@ -97,9 +99,9 @@ $(document).ready(function() {
   var url = "http://api.petfinder.com/pet.find?format=json&key=";
   var api = "9503ebe5eee4d378650ea8929cf9c5b7";
 
-  var search = "&location=85224";
-  var queryURL = url + api + search;
-  console.log(queryURL);
+  // var search = "&location=85224";
+  //  var queryURL = url + api + search;
+  //  console.log(queryURL);
   
   //Function for search button to capture variables and displayPetFinds
   $(document).on("click", ".search", function search () {
@@ -163,6 +165,21 @@ $(document).ready(function() {
           var size = res[i].size.$t;
           var sizResult = $("<p>").text("Size: " + size);
           newDiv.append(sizResult);
+
+          var shelter = res[i].shelterId.$t;
+          var shResult = $("<p>").text("Shelter ID: " + shelter);
+          newDiv.append(shResult);
+
+          var email = res[i].contact.email.$t;
+          var emResult = $("<p>").text("Email: " + email);
+          newDiv.append(emResult);
+
+          var phone = res[i].contact.phone.$t;
+          var phoResult = $("<p>").text("Phone: " + phone);
+          newDiv.append(phoResult);
+
+
+
  
           $(".results").append(newDiv);
         }//end of for
@@ -184,7 +201,8 @@ $(document).ready(function() {
     event.preventDefault();
 //Need to check ids if update form when new page is added  
     lostAndFound = $("#lostFound_input").val();
-    lFname = $("#name_input").val().trim();    
+    lFname = $("#name_input").val().trim(); 
+    lFdate = $("#date").val().trim();   
     lFanimal = $("#animalUpdate").val();
     lFsize = $("#sizeUpdate").val();
     lFsex = $("#sexUpdate").val();
@@ -197,6 +215,7 @@ $(document).ready(function() {
       database.ref().push({
         lostAndFound: lostAndFound,
         lFname: lFname,
+        lFdate: lFdate,
         lFanimal: lFanimal,
         lFsize: lFsize,
         lFsex: lFsex,
@@ -224,6 +243,7 @@ $(document).ready(function() {
     // full list of pets
     $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
       " </td><td> " + childSnapshot.val().lFname +
+      " </td><td> " + childSnapshot.val().lFdate +
       " </td><td> " + childSnapshot.val().lFanimal +
       " </td><td> " + childSnapshot.val().lFsize +
       " </td><td> " + childSnapshot.val().lFsex +
@@ -249,5 +269,6 @@ $(document).ready(function() {
       alert("Cancelled");
     }
   });  
+ 
  
 });//document ready
