@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Pet S.O.S</title>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+
+
+  </head>
+
+  <body>
+  
+
+    <div class="container-fluid">
+
+    
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="FindAPet.html">Find A Pet</a></li>
+        <li><a href="localDB.html">Local Database</a></li>
+      
+          </ul>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+
+    <div class="container">
+    
+
+    
+
+      <!-- Jumbotron Title -->
+      <div class="jumbotron">
+        <h1 class="text-center">Pet Signal</h1>
+        <h3 class="text-center">A Database of Lost and Found Pets.</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Search Shelter Databases!</h3>
+            </div>
+            <div class="panel-body">
+              <form>
+                    <div class="form-group">
+              <label for="Select">Animal</label>
+              <select class="form-control" id="animalArray">
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="Select">Size</label>
+              <select class="form-control" id="sizeArray">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="Select">Sex</label>
+              <select class="form-control" id="sexArray">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="Select">Age</label>
+              <select class="form-control" id="ageArray">
+              </select>
+            </div>
+            <div class="form-group field_1">
+              <label for="Textarea">Zip Code</label>              
+              <textarea class="form-control" id="zipCode" rows="1"></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
+            <button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
+        </form>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Shelter Search Results</h3>
+            </div>
+            <div class="panel-body">
+              <div class="results">
+                  <div class="fa fa-table"></div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+      <!-- Current employees -->
+<!--       <div class="row">
+        <div class="col-lg-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Shelter Map</h3>
+              </div>
+               
+                  <div class="panel-body">
+                   <table class="table">
+                   
+                    <tbody class="employee-list">
+                      <iframe src="https://www.google.com/maps/d/embed?mid=11Rf5dkqEBB8qARKr3DRJl4zotho" width="800" height="500" ></iframe>
+                      </tbody>     
+                    </table>
+
+                      
+                  </div>
+            </div>
+          </div>
+        </div> -->
+      
+
+      
+
+
+
+
+
+  <script src="assets/JS/app.js"></script>
+
+  </body>
+
+</html>
