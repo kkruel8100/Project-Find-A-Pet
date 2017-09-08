@@ -14,7 +14,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </head>
 
   <body>
@@ -29,84 +28,40 @@
         		<li><a href="FindAPet.html">Find A Pet</a></li>
         		<li><a href="localDB.html">Local Database</a></li>
       		</ul>
-        
       	</div>
     </div>
 
     <div class="container">
-		<br>
-
       	<!-- Jumbotron Title -->
 	    <div class="jumbotron">
 	       <h1 class="text-center">Pet Signal</h1>
 	       <h3 class="text-center">A Database of Lost and Found Pets.</h3>
 	    </div>
-
       <div class="row"><!--beginning of form div-->
         <div class="col-lg-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Find Your Pet! - Search Shelters</h3>
-=======
-
-    <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-    
-    
-      
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    
-      
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="FindAPet.html">Find A Pet</a></li>
-        <li><a href="localDB.html">Local Database</a></li>
-      
-          </ul>
-        </li>
-      </ul>
-    </div>
-</nav>
-
-    <div class="container">
-
-      <br>
-
-      <!-- Jumbotron Title -->
-      <div class="jumbotron">
-        <h1 class="text-center">Pet Signal</h1>
-        <h3 class="text-center">A Database of Lost and Found Pets.</h3>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Find Your Pet!</h3>
-
-
-                  <label for="pet-type">Type</label><br>
-                  <select class="pet-type" id="animalArray"></select>    
-                </div>
-                <div class="form-group">
-                  <label for="pet-size">Size</label><br>
-                    <select class="pet-size" id="sizeArray"></select>
-                </div>
+              <h3 class="panel-title">Find Your Pet! - Search Shelters</h3>  
+      			<form>
+      			  <div class="form-group">
+	                <label for="pet-type">Type</label><br>
+	                <select class="pet-type" id="animalArray"></select>    
+                  </div>
+	              <div class="form-group">
+	                <label for="pet-size">Size</label><br>
+	                <select class="pet-size" id="sizeArray"></select>
+	              </div>
                 <div class="form-group">
                   <label for="pet-sex">Sex</label><br>
-                    <select class="pet-size" id="sexArray"></select>
+                  <select class="pet-size" id="sexArray"></select>
                 </div>
                 <div class="form-group">
                   <label for="pet-age">Age</label>
-                  	<select class="form-control" id="ageArray"></select>
+                  <select class="form-control" id="ageArray"></select>
                 </div>
                 <div class="form-group field_1">
-		    		<label for="Textarea">Zip Code</label>		    			
-		    		<textarea class="form-control" id="zipCode" rows="1"></textarea>
+		    	  <label for="Textarea">Zip Code</label>		    			
+		    	  <textarea class="form-control" id="zipCode" rows="1"></textarea>
 		  		</div>
                 <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
 				<button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
@@ -114,263 +69,13 @@
             </div>
           </div>
         </div><!--end of form div-->
-
-                  <label for="pet-name">Pet Name</label>
-                  <input class="form-control" id="pet-name" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="pet-type">Type</label><br>
-                  <select class="pet-type">
-                      <option value="Dog">Dog</option>
-                      <option value="Cat">Cat</option>
-                  </select>    
-                  </div>
-                <div class="form-group">
-                  <label for="pet-size">Size</label><br>
-                    <select class="pet-size">
-                        <option value="Toy">Toy</option>
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                        <option value="Extra Large">Extra Large</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="pet-breed">Breed</label>
-                  <input class="form-control" id="pet-breed" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="pet-color">Color</label>
-                  <input class="form-control" id="pet-color" type="text">
-                </div>
-                <button class="btn btn-primary" id="submit-search" type="submit">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-                <div class="col-lg-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Report A Found Pet!</h3>
-            </div>
-            <div class="panel-body">
-              <form>
-                <div class="form-group">
-                  <label for="pet-name">Pet Name (On Tag)</label>
-                  <input class="form-control" id="pet-name" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="pet-type">Type</label><br>
-                  <select class="pet-type">
-                      <option value="Dog">Dog</option>
-                      <option value="Cat">Cat</option>
-                  </select>    
-                  </div>
-                <div class="form-group">
-                  <label for="pet-size">Size</label><br>
-                    <select class="pet-size">
-                        <option value="Toy">Toy</option>
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                        <option value="Extra Large">Extra Large</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="pet-breed">Breed</label>
-                  <input class="form-control" id="pet-breed" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="pet-color">Color</label>
-                  <input class="form-control" id="pet-color" type="text">
-                </div>
-                <button class="btn btn-primary" id="submit-entry" type="submit">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-  </body>
-
-</html>
-=======
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>KK Pet Project</title>
-	<!-- Custom CSS -->
-	<link rel="stylesheet" type="text/css" href="NYT_style.css">
-
-</head>
-<body>
-	<div></div>
-	<div class="row"><!--Search Row-->
-    	<div class="col-sm-12">
-			<div><!--Start of form div - Search Pet API-->	
-		    	<form id="query">
-		    		<h3><i class="fa fa-list-alt"></i>Search Shelters Parameters</h3> 
-				  	<div class="form-group">
-		    			<label for="Select">Animal</label>
-		    			<select class="form-control" id="animalArray">
-			      		</select>
-		  			</div>
-			 	  	<div class="form-group">
-		    			<label for="Select">Size</label>
-		    			<select class="form-control" id="sizeArray">
-		    			</select>
-				  	</div>
-				  	<div class="form-group">
-		    			<label for="Select">Sex</label>
-		    			<select class="form-control" id="sexArray">
-		    			</select>
-				  	</div>
-				  	<div class="form-group">
-		    			<label for="Select">Age</label>
-		    			<select class="form-control" id="ageArray">
-		    			</select>
-				  	</div>
-				  	<div class="form-group field_1">
-		    			<label for="Textarea">Zip Code</label>		    			
-		    			<textarea class="form-control" id="zipCode" rows="1"></textarea>
-		  			</div>
-				  	<button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
-				  	<button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
-				</form>
-		  	</div><!--End of form div-->
-		</div> 
-	</div><!--End of search Row-->
 	<div class="row"><!--Start of results Row-->
 		<div class="col-sm-12">
-			<div>
-		    	<div class="results">
-					<h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3> 	
-				</div>
+		    <div class="results">
+			  <h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3> 	
 			</div>	
 		</div>
 	</div><!--End of results Row-->	
-
-	<div class="row"><!--Start of Add a Pet -->
-	    <div class="col-sm-12">
-			<div class="card">
-  				<h4 class="card-header">Add A Pet</h4>
-  				<div class="card-body">
-					<form id="addPet">
-						  <div class="form-group">
-		    				<label for="Select">Lost/Found</label>
-		    				<select class="form-control" id="lostFound_input">
-			      			</select>
-		  				  </div>
-						  <div class="form-group">
-						    <label>Pet Name</label>
-						    <input type="text" class="form-control" id="name_input"></input>
-						  </div>
-						  <div class="form-group">
-						    <label>Date Lost or Found</label>	
-						    <input id="date" type="date">
-						  </div>  
-		<!--Update id names when moved to new html page - Not able to populate two ids on same page - Impacts both click functions-->
-		<!--May decide to keep two set of ids-->
-						  <div class="form-group">
-			    			<label for="Select">Animal</label>
-			    			<select class="form-control" id="animalUpdate">
-				      		</select>
-		  				  </div>
-					 	  <div class="form-group">
-				    		<label for="Select">Size</label>
-				    		<select class="form-control" id="sizeUpdate">
-				    		</select>
-						  </div>
-				  		  <div class="form-group">
-		    				<label for="Select">Sex</label>
-		    				<select class="form-control" id="sexUpdate">
-		    				</select>
-				  		  </div>
-				  	      <div class="form-group">
-		    				<label for="Select">Age</label>
-		    			    <select class="form-control" id="ageUpdate">
-		    			    </select>
-				  		  </div>
-						  
-						  <div class="form-group">
-						    <label>Zip Code</label>
-						    <input type="text" class="form-control" id="zipUpdate"></input>
-						  </div>
-						  <div class="image-upload">
-							  <label for="file-input">Image Upload</label>
-							<input id="file-input" type="file" />
-						  </div>
-						  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-					</form><!--end of form -->
-				</div><!--end of card body -->
-	      	</div><!--end of card -->
-	    </div>
-	  </div><!--End of Add a Pet -->
-	  <div class="row"><!--Start of Lost-Found Results-->
-	    <div class="col-sm-12">
-	    	<div class="card">
-  				<h4 class="card-header">Lost and Found Database</h4>
-  				<div class="card-body">
-					<table class="table">
-					  <thead>
-					    <tr>
-					      <th>Lost or Found</th> 
-					      <th>Pet Name</th>
-					      <th>Date Lost or Found</th>
-					      <th>Animal</th>
-					      <th>Size</th>
-					      <th>Sex</th>
-					      <th>Age</th>
-					      <th>Zip Code</th>
-					      <th>Delete</th>
-					    </tr>
-					  </thead>
-					  <tbody id="petList">  
-					  </tbody>
-					</table>
-
-				</div><!--end of card body -->
-			</div><!--end of card -->
-	    </div>
-	  </div><!--End of Lost-Found Results-->
-<!--THIS IS FOR SEARCH OF FIREBASE - HARDCODED OPTIONS TO GET IT TO WORK ON SAME PAGE-->
-	<div class="row"><!--Search Row-->
-    	<div class="col-sm-12">
-			<div><!--Start of form div - Search Firebase-->	
-		    	<form id="query">
-		    		<h3><i class="fa fa-list-alt"></i>Search Firebase Parameters</h3> 
-		    		<div class="form-group">
-						    <label>Pet Name</label>
-						    <input type="text" class="form-control" id="nameFB"></input>
-						  </div>
-				  	<div class="form-group">
-		    			<label for="Select">Animal</label>
-		    			<select class="form-control" id="animalFB">
-		    				<option>cat</option>
-		    				<option>dog</option>
-			      		</select>
-		  			</div>
-			 	  	
-				  	<div class="form-group">
-		    			<label for="Select">Sex</label>
-		    			<select class="form-control" id="sexFB">
-		    				<option>F</option>
-		    				<option>M</option>
-		    			</select>
-				  	</div>
-				  	
-				  	
-				  	<button type="button" class="btn btn-secondary firebase_search"><i class="fa fa-search"></i>Search</button>
-				  	
-				</form>
-		  	</div><!--End of form div-->
-		</div> 
-	</div><!--End of search Row-->
-
 	<!-- Firebase Reference -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

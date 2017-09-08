@@ -70,13 +70,13 @@ $(document).ready(function() {
   }
 
   //function to clear zip field after submit key
-  function clearField() {
-    $("#zipCode").val("");
-    $("#query")[0].reset();
-    $("#addPet")[0].reset();
-    $("#name_input").val("");
-    $("#zipUpdate").val("");
-  }
+  // function clearField() {
+  //   $("#zipCode").val("");
+  //   $("#query")[0].reset();
+  //   $("#addPet")[0].reset();
+  //   $("#name_input").val("");
+  //   $("#zipUpdate").val("");
+  // }
 
   //function to remove Top Articles results to be used in multiple places
   function callback() {
@@ -187,7 +187,7 @@ $(document).ready(function() {
         console.log(res);
       });//end of response function
 
-      clearField();   
+      // clearField();   
     }//end of if statement
 
 //Need to replace alert with Modal JS      
