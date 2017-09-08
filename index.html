@@ -12,19 +12,42 @@
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Firebase Reference -->
-   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
-
-
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </head>
 
   <body>
 
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    	<div class="navbar-header">
+    	
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      		<ul class="nav navbar-nav navbar-right">
+        		<li><a href="index.html">Home</a></li>
+        		<li><a href="FindAPet.html">Find A Pet</a></li>
+        		<li><a href="localDB.html">Local Database</a></li>
+      		</ul>
+        
+      	</div>
+    </div>
+
+    <div class="container">
+		<br>
+
+      	<!-- Jumbotron Title -->
+	    <div class="jumbotron">
+	       <h1 class="text-center">Pet Signal</h1>
+	       <h3 class="text-center">A Database of Lost and Found Pets.</h3>
+	    </div>
+
+      <div class="row"><!--beginning of form div-->
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Find Your Pet! - Search Shelters</h3>
+=======
 
     <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,10 +87,34 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Find Your Pet!</h3>
-            </div>
-            <div class="panel-body">
-              <form>
+
+
+                  <label for="pet-type">Type</label><br>
+                  <select class="pet-type" id="animalArray"></select>    
+                </div>
                 <div class="form-group">
+                  <label for="pet-size">Size</label><br>
+                    <select class="pet-size" id="sizeArray"></select>
+                </div>
+                <div class="form-group">
+                  <label for="pet-sex">Sex</label><br>
+                    <select class="pet-size" id="sexArray"></select>
+                </div>
+                <div class="form-group">
+                  <label for="pet-age">Age</label>
+                  	<select class="form-control" id="ageArray"></select>
+                </div>
+                <div class="form-group field_1">
+		    		<label for="Textarea">Zip Code</label>		    			
+		    		<textarea class="form-control" id="zipCode" rows="1"></textarea>
+		  		</div>
+                <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
+				<button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
+              </form>
+            </div>
+          </div>
+        </div><!--end of form div-->
+
                   <label for="pet-name">Pet Name</label>
                   <input class="form-control" id="pet-name" type="text">
                 </div>
@@ -147,41 +194,6 @@
         </div>
 
       </div>
-
-
-
-
-
-
-      <!-- Current employees -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Search Results</h3>
-              </div>
-               
-                  <div class="panel-body">
-                   <table class="table">
-                   
-                    <tbody class="employee-list">
-                      
-                    </table>
-
-                      
-                  </div>
-            </div>
-          </div>
-        </div>
-      
-
-      
-
-
-
-
-
-  <script src="logic.js"></script>
 
   </body>
 
@@ -359,10 +371,7 @@
 		</div> 
 	</div><!--End of search Row-->
 
-
-
-
-	
+	<!-- Firebase Reference -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- Firebase Javascript -->
