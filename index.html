@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
 
   <head>
@@ -186,4 +185,189 @@
 
   </body>
 
+</html>
+=======
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>KK Pet Project</title>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="NYT_style.css">
+
+</head>
+<body>
+	<div></div>
+	<div class="row"><!--Search Row-->
+    	<div class="col-sm-12">
+			<div><!--Start of form div - Search Pet API-->	
+		    	<form id="query">
+		    		<h3><i class="fa fa-list-alt"></i>Search Shelters Parameters</h3> 
+				  	<div class="form-group">
+		    			<label for="Select">Animal</label>
+		    			<select class="form-control" id="animalArray">
+			      		</select>
+		  			</div>
+			 	  	<div class="form-group">
+		    			<label for="Select">Size</label>
+		    			<select class="form-control" id="sizeArray">
+		    			</select>
+				  	</div>
+				  	<div class="form-group">
+		    			<label for="Select">Sex</label>
+		    			<select class="form-control" id="sexArray">
+		    			</select>
+				  	</div>
+				  	<div class="form-group">
+		    			<label for="Select">Age</label>
+		    			<select class="form-control" id="ageArray">
+		    			</select>
+				  	</div>
+				  	<div class="form-group field_1">
+		    			<label for="Textarea">Zip Code</label>		    			
+		    			<textarea class="form-control" id="zipCode" rows="1"></textarea>
+		  			</div>
+				  	<button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
+				  	<button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
+				</form>
+		  	</div><!--End of form div-->
+		</div> 
+	</div><!--End of search Row-->
+	<div class="row"><!--Start of results Row-->
+		<div class="col-sm-12">
+			<div>
+		    	<div class="results">
+					<h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3> 	
+				</div>
+			</div>	
+		</div>
+	</div><!--End of results Row-->	
+
+	<div class="row"><!--Start of Add a Pet -->
+	    <div class="col-sm-12">
+			<div class="card">
+  				<h4 class="card-header">Add A Pet</h4>
+  				<div class="card-body">
+					<form id="addPet">
+						  <div class="form-group">
+		    				<label for="Select">Lost/Found</label>
+		    				<select class="form-control" id="lostFound_input">
+			      			</select>
+		  				  </div>
+						  <div class="form-group">
+						    <label>Pet Name</label>
+						    <input type="text" class="form-control" id="name_input"></input>
+						  </div>
+						  <div class="form-group">
+						    <label>Date Lost or Found</label>	
+						    <input id="date" type="date">
+						  </div>  
+		<!--Update id names when moved to new html page - Not able to populate two ids on same page - Impacts both click functions-->
+		<!--May decide to keep two set of ids-->
+						  <div class="form-group">
+			    			<label for="Select">Animal</label>
+			    			<select class="form-control" id="animalUpdate">
+				      		</select>
+		  				  </div>
+					 	  <div class="form-group">
+				    		<label for="Select">Size</label>
+				    		<select class="form-control" id="sizeUpdate">
+				    		</select>
+						  </div>
+				  		  <div class="form-group">
+		    				<label for="Select">Sex</label>
+		    				<select class="form-control" id="sexUpdate">
+		    				</select>
+				  		  </div>
+				  	      <div class="form-group">
+		    				<label for="Select">Age</label>
+		    			    <select class="form-control" id="ageUpdate">
+		    			    </select>
+				  		  </div>
+						  
+						  <div class="form-group">
+						    <label>Zip Code</label>
+						    <input type="text" class="form-control" id="zipUpdate"></input>
+						  </div>
+						  <div class="image-upload">
+							  <label for="file-input">Image Upload</label>
+							<input id="file-input" type="file" />
+						  </div>
+						  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+					</form><!--end of form -->
+				</div><!--end of card body -->
+	      	</div><!--end of card -->
+	    </div>
+	  </div><!--End of Add a Pet -->
+	  <div class="row"><!--Start of Lost-Found Results-->
+	    <div class="col-sm-12">
+	    	<div class="card">
+  				<h4 class="card-header">Lost and Found Database</h4>
+  				<div class="card-body">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th>Lost or Found</th> 
+					      <th>Pet Name</th>
+					      <th>Date Lost or Found</th>
+					      <th>Animal</th>
+					      <th>Size</th>
+					      <th>Sex</th>
+					      <th>Age</th>
+					      <th>Zip Code</th>
+					      <th>Delete</th>
+					    </tr>
+					  </thead>
+					  <tbody id="petList">  
+					  </tbody>
+					</table>
+
+				</div><!--end of card body -->
+			</div><!--end of card -->
+	    </div>
+	  </div><!--End of Lost-Found Results-->
+<!--THIS IS FOR SEARCH OF FIREBASE - HARDCODED OPTIONS TO GET IT TO WORK ON SAME PAGE-->
+	<div class="row"><!--Search Row-->
+    	<div class="col-sm-12">
+			<div><!--Start of form div - Search Firebase-->	
+		    	<form id="query">
+		    		<h3><i class="fa fa-list-alt"></i>Search Firebase Parameters</h3> 
+		    		<div class="form-group">
+						    <label>Pet Name</label>
+						    <input type="text" class="form-control" id="nameFB"></input>
+						  </div>
+				  	<div class="form-group">
+		    			<label for="Select">Animal</label>
+		    			<select class="form-control" id="animalFB">
+		    				<option>cat</option>
+		    				<option>dog</option>
+			      		</select>
+		  			</div>
+			 	  	
+				  	<div class="form-group">
+		    			<label for="Select">Sex</label>
+		    			<select class="form-control" id="sexFB">
+		    				<option>F</option>
+		    				<option>M</option>
+		    			</select>
+				  	</div>
+				  	
+				  	
+				  	<button type="button" class="btn btn-secondary firebase_search"><i class="fa fa-search"></i>Search</button>
+				  	
+				</form>
+		  	</div><!--End of form div-->
+		</div> 
+	</div><!--End of search Row-->
+
+
+
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Firebase Javascript -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <!-- Custom Javascript -->
+	<script src="javascript/app.js"></script>
+</body>
 </html>
