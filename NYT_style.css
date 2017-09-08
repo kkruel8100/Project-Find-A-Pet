@@ -1,0 +1,138 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #fff;
+	background-color: #20315a;
+}
+
+p, label {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #20315a;
+	font-weight: bold;
+}
+
+h3 {
+	padding: 10px 20px;
+	font-size: 17px;
+	font-weight: 400;
+}
+
+.jumbotron {
+	background-color: #20315a;
+}
+
+.display-3 {
+	font-weight: bold;
+	font-size: 39px;
+	text-align: center;
+	box-sizing: border-box;
+	margin-bottom: 0;
+}
+
+.fa-newspaper-o {
+	box-sizing: border-box;
+	color: #fff;
+	margin-right: .3em;
+}
+
+form, .results {
+	border: 1px solid #20315a;
+	margin: 0 20px 40px;
+	display: block;
+	padding-bottom: 20px;
+}
+
+
+.form-group {
+	padding: 10px 20px 0;
+} 
+
+.btn {
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+i {
+	padding-right: 5px;
+}
+
+.results .callback {
+	padding: 15px 10px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	margin: 15px 15px 10px;
+}
+
+.results h4 {
+	background-color: #f5f5f5;
+	color: #20315a;
+	font-size: 26px;
+	font-weight: bold;
+
+}
+
+.results p {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.results a {
+	color: #18bc9c;
+}
+
+.results .label {
+	background-color: #20315a;
+	color: #ffffff;
+	font-size: 16px;
+	border-radius: 5px;
+	padding: 4px 15px;
+	margin-right: 10px;
+}
+
+.card {
+	margin-bottom: 30px;
+
+}
+
+.card-header {
+	background-color: #337ab7;
+	color: #fff;
+	font-size: 1.3rem;
+}
+
+._jw-tpk-container {
+	height: 155px;
+}
+
+ol {
+	margin-bottom: .4rem;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef;
+}
+th {
+    text-align: left;
+}
+
+button.edit, button.delete {
+	padding: 0;
+	width: 20px;
+	height: 20px;
+}
+
+img {
+	width: 16px;
+	height: 16px;
+}
+
+.results img {
+	width: 300px;
+	height: auto;
+}
