@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </head>
 
   <body>
@@ -46,10 +47,48 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Find Your Pet! - Search Shelters</h3>
-            </div>
-            <div class="panel-body">
-              <form>
-                <div class="form-group">
+=======
+
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    
+    
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="FindAPet.html">Find A Pet</a></li>
+        <li><a href="localDB.html">Local Database</a></li>
+      
+          </ul>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+    <div class="container">
+
+      <br>
+
+      <!-- Jumbotron Title -->
+      <div class="jumbotron">
+        <h1 class="text-center">Pet Signal</h1>
+        <h3 class="text-center">A Database of Lost and Found Pets.</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Find Your Pet!</h3>
+
+
                   <label for="pet-type">Type</label><br>
                   <select class="pet-type" id="animalArray"></select>    
                 </div>
@@ -75,25 +114,87 @@
             </div>
           </div>
         </div><!--end of form div-->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Search Results</h3>
-              </div>
-               
-                  <div class="panel-body">
-                   <table class="table">
-                   
-                    <tbody class="employee-list">
-                      
-                    </table>
 
-                      
+                  <label for="pet-name">Pet Name</label>
+                  <input class="form-control" id="pet-name" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="pet-type">Type</label><br>
+                  <select class="pet-type">
+                      <option value="Dog">Dog</option>
+                      <option value="Cat">Cat</option>
+                  </select>    
                   </div>
+                <div class="form-group">
+                  <label for="pet-size">Size</label><br>
+                    <select class="pet-size">
+                        <option value="Toy">Toy</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="Extra Large">Extra Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="pet-breed">Breed</label>
+                  <input class="form-control" id="pet-breed" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="pet-color">Color</label>
+                  <input class="form-control" id="pet-color" type="text">
+                </div>
+                <button class="btn btn-primary" id="submit-search" type="submit">Submit</button>
+              </form>
             </div>
           </div>
         </div>
+
+                <div class="col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Report A Found Pet!</h3>
+            </div>
+            <div class="panel-body">
+              <form>
+                <div class="form-group">
+                  <label for="pet-name">Pet Name (On Tag)</label>
+                  <input class="form-control" id="pet-name" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="pet-type">Type</label><br>
+                  <select class="pet-type">
+                      <option value="Dog">Dog</option>
+                      <option value="Cat">Cat</option>
+                  </select>    
+                  </div>
+                <div class="form-group">
+                  <label for="pet-size">Size</label><br>
+                    <select class="pet-size">
+                        <option value="Toy">Toy</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="Extra Large">Extra Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="pet-breed">Breed</label>
+                  <input class="form-control" id="pet-breed" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="pet-color">Color</label>
+                  <input class="form-control" id="pet-color" type="text">
+                </div>
+                <button class="btn btn-primary" id="submit-entry" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
   </body>
 
 </html>
@@ -272,6 +373,7 @@
 
 	<!-- Firebase Reference -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	<!-- Firebase Javascript -->
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <!-- Custom Javascript -->
