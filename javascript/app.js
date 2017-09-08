@@ -207,7 +207,7 @@ $(document).ready(function() {
     lFsize = $("#sizeUpdate").val();
     lFsex = $("#sexUpdate").val();
     lFage = $("#ageUpdate").val();
-    lFzip = $("#zipUpdate").val().trim();
+    lFzip = $("#zipCode").val();
 
     if (lFzip.length===5 && lFname.length >= 1) {
 
@@ -225,7 +225,7 @@ $(document).ready(function() {
       });
 
       // Code to clear input fields
-      clearField();
+      // clearField();
     }//end of if
 
 //Need to replace alert with Modal JS    
