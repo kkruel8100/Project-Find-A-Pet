@@ -36,34 +36,28 @@ $(document).ready(function() {
   var file = "";
   var lFfilelocation = "";
 
-//!!Update id names when moved to new html page - Not able to populate two ids on same page -- Impacts both click functions
-//May decide to keep two set of ids
   //Dropdown functions for html page
   function animalSelect() {
     for (i=0; i<animal.length; i++) {
       $("#animalArray").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
-      // $("#animalUpdate").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
     }    
   }
 
   function sexSelect() {
     for (i=0; i<sex.length; i++) {
       $("#sexArray").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
-      // $("#sexUpdate").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
     }    
   }
 
   function sizeSelect() {
     for (i=0; i<size.length; i++) {
       $("#sizeArray").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
-      // $("#sizeUpdate").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
     }    
   }
 
   function ageSelect() {
     for (i=0; i<age.length; i++) {
       $("#ageArray").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
-      // $("#ageUpdate").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
     }    
   }
 
@@ -75,15 +69,21 @@ $(document).ready(function() {
 
   //function to clear zip field after submit key
   function clearField() {
-    $("#zipCode").val("");
-    $("#shelterID").val("");
-    // $("#query")[0].reset();
-    $("#addPet")[0].reset();
-    uploader.value = 0;
-
-
-    // $("#name_input").val("");
-    // $("#zipUpdate").val("");
+    // $("#zipCode").val("");
+    // $("#shelterID").val("");
+    if (document.getElementById('shelterID')){
+      $("#shelterID").val("");
+    }
+    if (document.getElementById('zipCode')){
+      $("#zipCode").val("");
+    }  
+    if (document.getElementById('addPet')){
+      $("#addPet")[0].reset();
+      uploader.value = 0;
+    }
+    if (document.getElementById('sheltersearch')){
+      $("#sheltersearch")[0].reset();
+    }
    }
 
   //function to remove Search results to be used in multiple places
@@ -119,14 +119,7 @@ $(document).ready(function() {
     var ageSearch = $("#ageArray").val();
     var zipSearch = $("#zipCode").val();
 
-    console.log(aniSearch);
-    console.log(sizSearch);
-    console.log(sexSearch);
-    console.log(ageSearch);
-    console.log(zipSearch);
-
     var queryURL = url + api + "&animal=" + aniSearch + "&size=" + sizSearch + "&sex=" + sexSearch + "&age=" + ageSearch + "&location=" + zipSearch;
-    console.log(queryURL);
 
     if (zipSearch.length===5) {
 
@@ -135,7 +128,6 @@ $(document).ready(function() {
          method: "GET",
          dataType:"jsonp"
         }).done(function(response) {
-         console.log(response);
          var res = response.petfinder.pets.pet;
 
       //API search default is 25 results
@@ -149,7 +141,6 @@ $(document).ready(function() {
           if (res[i].media.hasOwnProperty("photos")) {  
             var img = res[i].media.photos.photo[3].$t; 
             var imgResult = "<img src=" + img + ">";
-            console.log(img);
             newDiv.append(imgResult);
             }
           else {
@@ -188,7 +179,6 @@ $(document).ready(function() {
           $(".results").append(newDiv);
         }//end of for
 
-        console.log(res);
       });//end of response function
 
         clearField();   
@@ -223,9 +213,7 @@ $(document).ready(function() {
       },
       
       function complete(snapshot) {
-        console.log('Completed upload');
         lFfilelocation = task.snapshot.downloadURL;
-        console.log('Download URL: ' + lFfilelocation);
       });       
     });
   };
@@ -245,15 +233,12 @@ $(document).ready(function() {
          method: "GET",
          dataType:"jsonp"
         }).done(function(response) {
-          console.log(response);
           var res = response.petfinder.shelter;
-          console.log(res);
       
       //API search returns 1 shelter
        
           var shelDiv = $("<div class='shelter'>");
           var headline = res.name.$t;
-          console.log(headline);
           var head = $("<h4>").text("Shelter: " + headline);
           shelDiv.append(head);
           var address = res.address1.$t;
