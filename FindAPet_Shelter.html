@@ -85,12 +85,46 @@
             <h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3>   
           </div>  
         </div>
+
+ <!-- Successful Add Modal -->
+                <div class="modal fade" id="myModal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                        <h3> Your Pet Has Been Added! </h3>
+                         </div> 
+                          <div class="modal-body">
+                            <p>Thank you for submiting your pet to our database!</p>
+                          </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+                  <!-- Bad Zipcode Modal -->
+                  <div class="modal fade" id="badInputModal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                        <h3> Error! </h3>
+                         </div> 
+                          <div class="modal-body">
+                            <p>Please check your zipcode and its format!</p>
+                          </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+
+
       </div><!--End of results Row--> 
     </div><!--container close -->    
     
     <!-- Firebase Reference -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+   
     <!-- Firebase Javascript -->
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <!-- Custom Javascript -->
