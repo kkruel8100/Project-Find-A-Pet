@@ -76,9 +76,11 @@ $(document).ready(function() {
   //function to clear zip field after submit key
   function clearField() {
     $("#zipCode").val("");
+    $("#shelterID").val("");
     // $("#query")[0].reset();
     $("#addPet")[0].reset();
     uploader.value = 0;
+
 
     // $("#name_input").val("");
     // $("#zipUpdate").val("");
@@ -87,6 +89,7 @@ $(document).ready(function() {
   //function to remove Search results to be used in multiple places
   function callback() {
     $(".callback").remove();
+    $(".shelter").remove();
   }
 
   //function for clear button to remove elements in callback area
@@ -227,6 +230,60 @@ $(document).ready(function() {
     });
   };
 
+  //Function for SHELTER FIND 
+  $(document).on("click", ".shelter_search", function search () {
+      
+    callback();
+
+    var shelsearch = $("#shelterID").val();
+    var search = shelsearch.toUpperCase();
+    var url = "http://api.petfinder.com/shelter.get?format=json&key=";
+    var queryURL = url + api + "&id=" + search;
+
+        $.ajax({
+         url: queryURL,
+         method: "GET",
+         dataType:"jsonp"
+        }).done(function(response) {
+          console.log(response);
+          var res = response.petfinder.shelter;
+          console.log(res);
+      
+      //API search returns 1 shelter
+       
+          var shelDiv = $("<div class='shelter'>");
+          var headline = res.name.$t;
+          console.log(headline);
+          var head = $("<h4>").text("Shelter: " + headline);
+          shelDiv.append(head);
+          var address = res.address1.$t;
+          var addResult = $("<p>").text(address);
+          shelDiv.append(addResult);
+          var city = res.city.$t;
+          var cityResult = $("<p>").text(city);
+          shelDiv.append(cityResult);
+          var state = res.state.$t;
+          var stateResult = $("<p>").text(state);
+          shelDiv.append(stateResult);
+          var zip = res.zip.$t;
+          var zipResult = $("<p>").text(zip);
+          shelDiv.append(zipResult);
+          var phone = res.phone.$t;
+          var phonResult = $("<p>").text(phone);
+          shelDiv.append(phonResult);
+          var email = res.email.$t;
+          var emaResult = $("<p>").text(email);
+          shelDiv.append(emaResult);
+
+          $("#shelterID_search").append(shelDiv);
+        
+      });//end of response function
+
+        clearField();   
+
+    });    
+
+
      // Capture Add a Pet Click
   $("#submit").on("click", function(event) {
     event.preventDefault();
@@ -305,6 +362,5 @@ $(document).ready(function() {
       alert("Cancelled");
     }
   });  
- 
  
 });//document ready

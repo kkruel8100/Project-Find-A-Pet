@@ -63,7 +63,7 @@
                   <select class="form-control" id="ageArray"></select>
               </div>
               <div class="form-group field_1">
-                  <label for="Textarea">Zip Code</label>              
+                  <label for="Textarea">Zip Code</label><br>             
                   <input type="text" maxlength="5" id="zipCode">
               </div>
               <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
@@ -74,7 +74,16 @@
          
         <div class="col-sm-6">
           <h3 class="panel-title">Find Shelter Address</h3>
-          <div id="shelterID_search">Shelter Search Place holder</div>
+          <div id="shelter_form">
+            <form>
+              <div class="form-group">
+                <label for="shelter">Shelter ID</label><br>  
+                <input type="text" name="shelter" id="shelterID">   
+              </div> 
+              <button type="button" class="btn btn-secondary shelter_search"><i class="fa fa-search"></i>Search</button>
+            </form>
+          </div>  
+          <div id="shelterID_search"></div>
           <div id="google_search">Google Map Place holder</div>
         </div>
         
@@ -82,7 +91,7 @@
       <div class="row"><!--Start of results Row-->
         <div class="col-sm-12">
           <div class="results">
-            <h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3>   
+            <h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3>    
           </div>  
         </div>
       </div><!--End of results Row--> 
@@ -94,7 +103,8 @@
     <!-- Firebase Javascript -->
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <!-- Custom Javascript -->
-    <script src="javascript/app.js"></script>   
+    <script src="javascript/app.js"></script> 
+    
   </body>
 
 </html>
