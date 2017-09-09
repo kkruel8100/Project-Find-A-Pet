@@ -1,59 +1,62 @@
-.nav>li>a {
-    
-    padding-top: 15px;
-    padding-bottom: 15px;
-    width: 360px;
-    text-align: center;
-    margin-right: 48px;
-    font-weight: bold;
-    font-size: 24px;
-    }
+.nav>li>a {  
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    .nav>li>a:hover {
-    background-color: white;
-  }
+.navbar-default{
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.img-rounded{
+  float: right;
+}
+
+.container-fluid {
+  background-image: url("../../icons/grey-linen.jpg");
+}
+
+.panel-default>.panel-heading {
+  background: #a1d6ff;
+  border: 1px solid #a1d6ff;
+}
+
+a{
+  color: #000000;
+}
+
+.jumbotron {
+  background: #a1d6ff;
+  color: white;
+  margin-top: 15px;
+}
+
+.jumbotron h1 {
+  font-size: 84px;
+}
+
+select {
+  width: 100px;
+
+}
+
+option {
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background: #ffb100;
+  color: color: #000000;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
 
 
-    .container-fluid {
-      background: #ffb100;
-    }
-
-   a{
-      color: #000000;
-    }
-
-    .panel-default>.panel-heading {
-      background: #ffb100;
-    }
-    .jumbotron {
-      background: white;
-    }
-
-    .jumbotron h1 {
-      font-size: 84px;
-    }
-
-    select {
-      width: 100px;
-
-    }
-
-    option {
-      text-align: center;
-    }
-
-    .btn-primary:hover {
-      background: #ffb100;
-      color: color: #000000;
-      -webkit-transition: all 500ms ease;
-      -moz-transition: all 500ms ease;
-      -ms-transition: all 500ms ease;
-      -o-transition: all 500ms ease;
-      transition: all 500ms ease;
- }
-
-
- #date{
-  width: 100%;
- }
+#date{
+width: 100%;
+}
 
