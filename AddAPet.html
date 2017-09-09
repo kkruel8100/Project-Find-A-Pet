@@ -39,8 +39,9 @@
       </div>
 
       <div class="row"><!--Start of Add a Pet -->
-            <div class="card-bod">y        <div class="col-sm-12">          <divclass="card">
-
+        <div class="col-sm-12">          
+          <div class="card">
+           <div class="card-body">        
 
             <form id="addPet">           
 
@@ -57,35 +58,38 @@
                 <label>Date Lost or Found</label> 
                 <input id="date" type="date">
               </div>  
-    <!--Update id names when moved to new html page - Not able to populate two ids on same page - Impacts both click functions-->
-    <!--May decide to keep two set of ids-->
               <div class="form-group">
                 <label for="Select">Animal</label>
-                <select class="form-control" id="animalUpdate">
+                <select class="form-control" id="animalArray">
                 </select>
               </div>
               <div class="form-group">
                 <label for="Select">Size</label>
-                <select class="form-control" id="sizeUpdate">
+                <select class="form-control" id="sizeArray">
                 </select>
               </div>
               <div class="form-group">
                 <label for="Select">Sex</label>
-                <select class="form-control" id="sexUpdate">
+                <select class="form-control" id="sexArray">
                 </select>
               </div>
               <div class="form-group">
                 <label for="Select">Age</label>
-                  <select class="form-control" id="ageUpdate">
+                  <select class="form-control" id="ageArray">
                   </select>
               </div>
-              <div class="form-group field_1">
+              <div class="form-group">
                 <label for="Textarea">Zip Code</label>              
                 <input type="text" maxlength="5" id="zipCode">
               </div>
+              <div class="form-group">
+  				<label>E-mail</label>
+  				<input type="email" id="email">
+			  </div>
               <div class="image-upload">
                 <label for="file-input">Image Upload</label>
                 <input id="file-input" type="file" />
+                <progress value="0" max="100" id="uploader">0%</progress>
               </div>
               <button id="submit" type="submit" class="btn btn-primary">Submit</button>
             </form><!--end of form -->
@@ -98,7 +102,7 @@
 
    <!-- Firebase Reference -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- Firebase Javascript -->>
+  <!-- Firebase Javascript -->
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <!-- Custom Javascript -->
   <script src="javascript/app.js"></script>   

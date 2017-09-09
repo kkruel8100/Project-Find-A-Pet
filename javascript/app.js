@@ -5,7 +5,7 @@ $(document).ready(function() {
     authDomain: "project-find-a-pet.firebaseapp.com",
     databaseURL: "https://project-find-a-pet.firebaseio.com",
     projectId: "project-find-a-pet",
-    storageBucket: "",
+    storageBucket: "project-find-a-pet.appspot.com",
     messagingSenderId: "1054405260043"
   };
   firebase.initializeApp(config);
@@ -30,7 +30,11 @@ $(document).ready(function() {
   var lFsize = "";
   var lFage = "";
   var lFzip = "";
-
+  var lFemail= "";
+  var lFimage = document.getElementById('file-input');
+  var lFprogress = document.getElementById('uploader');
+  var file = "";
+  var lFfilelocation = "";
 
 //!!Update id names when moved to new html page - Not able to populate two ids on same page -- Impacts both click functions
 //May decide to keep two set of ids
@@ -38,28 +42,28 @@ $(document).ready(function() {
   function animalSelect() {
     for (i=0; i<animal.length; i++) {
       $("#animalArray").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
-      $("#animalUpdate").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
+      // $("#animalUpdate").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
     }    
   }
 
   function sexSelect() {
     for (i=0; i<sex.length; i++) {
       $("#sexArray").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
-      $("#sexUpdate").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
+      // $("#sexUpdate").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
     }    
   }
 
   function sizeSelect() {
     for (i=0; i<size.length; i++) {
       $("#sizeArray").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
-      $("#sizeUpdate").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
+      // $("#sizeUpdate").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
     }    
   }
 
   function ageSelect() {
     for (i=0; i<age.length; i++) {
       $("#ageArray").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
-      $("#ageUpdate").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
+      // $("#ageUpdate").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
     }    
   }
 
@@ -70,15 +74,17 @@ $(document).ready(function() {
   }
 
   //function to clear zip field after submit key
-  // function clearField() {
-  //   $("#zipCode").val("");
-  //   $("#query")[0].reset();
-  //   $("#addPet")[0].reset();
-  //   $("#name_input").val("");
-  //   $("#zipUpdate").val("");
-  // }
+  function clearField() {
+    $("#zipCode").val("");
+    // $("#query")[0].reset();
+    $("#addPet")[0].reset();
+    uploader.value = 0;
 
-  //function to remove Top Articles results to be used in multiple places
+    // $("#name_input").val("");
+    // $("#zipUpdate").val("");
+   }
+
+  //function to remove Search results to be used in multiple places
   function callback() {
     $(".callback").remove();
   }
@@ -99,10 +105,6 @@ $(document).ready(function() {
   var url = "http://api.petfinder.com/pet.find?format=json&key=";
   var api = "9503ebe5eee4d378650ea8929cf9c5b7";
 
-  // var search = "&location=85224";
-  //  var queryURL = url + api + search;
-  //  console.log(queryURL);
-  
   //Function for search button to capture variables and displayPetFinds
   $(document).on("click", ".search", function search () {
       
@@ -124,12 +126,14 @@ $(document).ready(function() {
     console.log(queryURL);
 
     if (zipSearch.length===5) {
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).done(function(response) {
-        console.log(response);
-        var res = response.petfinder.pets.pet;
+
+        $.ajax({
+         url: queryURL,
+         method: "GET",
+         dataType:"jsonp"
+        }).done(function(response) {
+         console.log(response);
+         var res = response.petfinder.pets.pet;
 
       //API search default is 25 results
         for (var i = 0; i < results; i++) {
@@ -178,16 +182,13 @@ $(document).ready(function() {
           var phoResult = $("<p>").text("Phone: " + phone);
           newDiv.append(phoResult);
 
-
-
- 
           $(".results").append(newDiv);
         }//end of for
 
         console.log(res);
       });//end of response function
 
-      // clearField();   
+        clearField();   
     }//end of if statement
 
 //Need to replace alert with Modal JS      
@@ -196,20 +197,52 @@ $(document).ready(function() {
     }
   });//end of search click function  
 
+  // Listen for file selection
+  if ($('#file-input').length) {  
+    lFimage.addEventListener('change', function(e) {
+      //Get file
+      file=e.target.files[0];
+      
+      //Create a storage ref
+      var storageRef = firebase.storage().ref('animalphotos/' + file.name);
+      
+      //Upload file
+      var task = storageRef.put(file);
+      
+      //Update progress bar
+      task.on('state_changed',
+      function progress(snapshot) {
+        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        uploader.value = percentage;
+      },
+      
+      function error(err) {  
+      },
+      
+      function complete(snapshot) {
+        console.log('Completed upload');
+        lFfilelocation = task.snapshot.downloadURL;
+        console.log('Download URL: ' + lFfilelocation);
+      });       
+    });
+  };
+
      // Capture Add a Pet Click
   $("#submit").on("click", function(event) {
     event.preventDefault();
 //Need to check ids if update form when new page is added  
     lostAndFound = $("#lostFound_input").val();
-    lFname = $("#name_input").val().trim(); 
+    lFname = $("#name_input").val().trim().toLowerCase(); 
     lFdate = $("#date").val().trim();   
-    lFanimal = $("#animalUpdate").val();
-    lFsize = $("#sizeUpdate").val();
-    lFsex = $("#sexUpdate").val();
-    lFage = $("#ageUpdate").val();
+    lFanimal = $("#animalArray").val();
+    lFsize = $("#sizeArray").val();
+    lFsex = $("#sexArray").val();
+    lFage = $("#ageArray").val();
     lFzip = $("#zipCode").val();
+    lFemail = $("#email").val();
 
-    if (lFzip.length===5 && lFname.length >= 1) {
+    //Phase 2 user authentication sign in to add pet & email verification
+    if (lFzip.length===5 && lFname.length >= 1 && lFemail.length >=1 && file != "") {
 
       // Code for the push
       database.ref().push({
@@ -221,16 +254,19 @@ $(document).ready(function() {
         lFsex: lFsex,
         lFage: lFage,
         lFzip: lFzip,
+        lFemail: lFemail,
+        lFpic: lFfilelocation,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
 
       // Code to clear input fields
-      // clearField();
+      clearField();
+      alert("You have added a Pet")
     }//end of if
 
 //Need to replace alert with Modal JS    
     else {
-      alert("Please verify name and zip")
+      alert("Please verify all fields are completed")
     }//end of else
 
   });//end of click
@@ -242,7 +278,7 @@ $(document).ready(function() {
 
     // full list of pets
     $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
-      " </td><td> " + childSnapshot.val().lFname +
+      " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
       " </td><td> " + childSnapshot.val().lFdate +
       " </td><td> " + childSnapshot.val().lFanimal +
       " </td><td> " + childSnapshot.val().lFsize +
