@@ -196,7 +196,7 @@ $(document).ready(function() {
 
 //Need to replace alert with Modal JS      
     else {
-      alert("Please verify zip code");
+      $("#badInputModal").modal({show: true});
     }
   });//end of search click function  
 
@@ -301,6 +301,8 @@ $(document).ready(function() {
     //Phase 2 user authentication sign in to add pet & email verification
     if (lFzip.length===5 && lFname.length >= 1 && lFemail.length >=1 && file != "") {
 
+      $("#myModal").modal({show: true});
+
       // Code for the push
       database.ref().push({
         lostAndFound: lostAndFound,
@@ -318,12 +320,12 @@ $(document).ready(function() {
 
       // Code to clear input fields
       clearField();
-      alert("You have added a Pet")
+      //alert("You have added a Pet")
     }//end of if
 
 //Need to replace alert with Modal JS    
     else {
-      alert("Please verify all fields are completed")
+      $("#badInputModal").modal({show: true});
     }//end of else
 
   });//end of click
@@ -353,14 +355,9 @@ $(document).ready(function() {
   //alerts need to be replaced with modals
   $(document).on("click", ".delete", function(event) {
     var childKey = this.id;
-    if (confirm("Are you sure you want to delete this notification?") === true) {
-      alert("Removed: " + childKey);
-      database.ref(childKey).remove();
-      $(this).closest("tr").remove();
-        
-    } else {
-      alert("Cancelled");
-    }
+    database.ref(childKey).remove();
+    $(this).closest("tr").remove();
+    
   });  
  
 });//document ready
