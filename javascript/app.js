@@ -220,13 +220,14 @@ $(document).ready(function() {
 
   //Function for SHELTER FIND 
   $(document).on("click", ".shelter_search", function search () {
-      
+    
+    event.preventDefault();  
     callback();
 
     var shelsearch = $("#shelterID").val();
-    var search = shelsearch.toUpperCase();
+    var findID = shelsearch.toUpperCase();
     var url = "http://api.petfinder.com/shelter.get?format=json&key=";
-    var queryURL = url + api + "&id=" + search;
+    var queryURL = url + api + "&id=" + findID;
 
         $.ajax({
          url: queryURL,
@@ -238,9 +239,9 @@ $(document).ready(function() {
       //API search returns 1 shelter
        
           var shelDiv = $("<div class='shelter'>");
-          var headline = res.name.$t;
-          var head = $("<h4>").text("Shelter: " + headline);
-          shelDiv.append(head);
+          var findName = res.name.$t;
+          var shelName = $("<h4>").text("Shelter: " + findName);
+          shelDiv.append(shelName);
           var address = res.address1.$t;
           var addResult = $("<p>").text(address);
           shelDiv.append(addResult);
