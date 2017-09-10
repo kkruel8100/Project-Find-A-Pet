@@ -84,12 +84,16 @@ $(document).ready(function() {
     if (document.getElementById('sheltersearch')){
       $("#sheltersearch")[0].reset();
     }
+    if (document.getElementById('query')){
+      $("#query")[0].reset();
+    }
+
    }
 
   //function to remove Search results to be used in multiple places
   function callback() {
     $(".callback").remove();
-    $(".shelter").remove();
+    // $(".shelter").remove();
   }
 
   //function for clear button to remove elements in callback area
@@ -222,7 +226,7 @@ $(document).ready(function() {
   $(document).on("click", ".shelter_search", function search () {
     
     event.preventDefault();  
-    callback();
+    $(".shelter").remove();
 
     var shelsearch = $("#shelterID").val();
     var findID = shelsearch.toUpperCase();
@@ -236,27 +240,34 @@ $(document).ready(function() {
         }).done(function(response) {
           var res = response.petfinder.shelter;
       
-      //API search returns 1 shelter
+        //API search returns 1 shelter
        
           var shelDiv = $("<div class='shelter'>");
+          
           var findName = res.name.$t;
           var shelName = $("<h4>").text("Shelter: " + findName);
           shelDiv.append(shelName);
+          
           var address = res.address1.$t;
           var addResult = $("<p>").text(address);
           shelDiv.append(addResult);
+          
           var city = res.city.$t;
           var cityResult = $("<p>").text(city);
           shelDiv.append(cityResult);
+          
           var state = res.state.$t;
           var stateResult = $("<p>").text(state);
           shelDiv.append(stateResult);
+          
           var zip = res.zip.$t;
           var zipResult = $("<p>").text(zip);
           shelDiv.append(zipResult);
+          
           var phone = res.phone.$t;
           var phonResult = $("<p>").text(phone);
           shelDiv.append(phonResult);
+          
           var email = res.email.$t;
           var emaResult = $("<p>").text(email);
           shelDiv.append(emaResult);
@@ -267,8 +278,70 @@ $(document).ready(function() {
 
         clearField();   
 
-    });    
+    });  
 
+//Function for search button to capture variables and displayPetFinds
+ $(document).on("click", ".firebase_search", function search () {
+  
+    
+    //Clear the div so it can populate new results
+    $("#pFresults").empty();
+
+    
+    var nameSearch = $("#nameFB").val().trim().toLowerCase();
+    var aniSearch = $("#animalArray").val();
+    var sexSearch = $("#sexArray").val();
+    
+    var ref = database.ref();
+
+    if (nameSearch==="") {
+      
+      ref.orderByChild("lFanimal").equalTo(aniSearch).on("child_added", function(childSnapshot) {
+
+       if (childSnapshot.val().lFsex === sexSearch) {
+        $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +
+          " </td><td> " + childSnapshot.val().lFanimal +
+          " </td><td> " + childSnapshot.val().lFsex +
+          " </td><td> " + childSnapshot.val().lFsize +
+          " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lFzip + 
+          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
+
+          
+       };
+
+      });
+    }//end of if nameSearch===""
+
+    else {
+      ref.orderByChild("lFname").equalTo(nameSearch).on("child_added", function(childSnapshot) {
+
+       if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
+        $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +
+          " </td><td> " + childSnapshot.val().lFanimal +
+          " </td><td> " + childSnapshot.val().lFsex +
+          " </td><td> " + childSnapshot.val().lFsize +
+          " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lFzip + 
+          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
+          }
+
+
+        
+
+      });
+    }//end of else 
+    if ($('#pFresults').html() == '') {
+      $("#pFresults").append("No results found");
+    } 
+    clearField();
+ });
 
      // Capture Add a Pet Click
   $("#submit").on("click", function(event) {
@@ -322,7 +395,8 @@ $(document).ready(function() {
     id = childSnapshot.key;//captures unique key value
 
     // full list of pets
-    $("#petList").append("<tr><td> " + childSnapshot.val().lostAndFound +
+    $("#petList").append("<tr><td> " + "image" +
+      " </td><td> " + childSnapshot.val().lostAndFound +
       " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
       " </td><td> " + childSnapshot.val().lFdate +
       " </td><td> " + childSnapshot.val().lFanimal +
@@ -330,6 +404,7 @@ $(document).ready(function() {
       " </td><td> " + childSnapshot.val().lFsex +
       " </td><td> " + childSnapshot.val().lFage +
       " </td><td> " + childSnapshot.val().lFzip +
+      " </td><td> " + childSnapshot.val().lFemail +
       " </td><td> " + "<button id='"+id+"'class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
 
       // Handle the errors
