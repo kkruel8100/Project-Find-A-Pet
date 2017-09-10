@@ -32,11 +32,19 @@ $(document).ready(function() {
   var lFzip = "";
   var lFemail= "";
   var lFimage = document.getElementById('file-input');
-  var lFprogress = document.getElementById('uploader');
   var file = "";
   var lFfilelocation = "";
 
   //Dropdown functions for html page
+  //Navigation bar
+  function navagationArray () {
+    $(".nav").append("<li><a href='index.html'>Home</a></li>" + 
+      "<li><a href='FindAPet_Shelter.html'>Shelters</a></li>" + 
+      "<li><a href='Lost&Found.html'>Lost &amp; Found</a></li>" + 
+      "<li><a href='AddAPet.html'>Add A Pet</a></li>" +
+      "<li><a href='Admin.html'>Admin Panel</a></li>");
+  }
+
   function animalSelect() {
     for (i=0; i<animal.length; i++) {
       $("#animalArray").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
@@ -107,6 +115,7 @@ $(document).ready(function() {
   sizeSelect();
   ageSelect();
   lostAndFoundSelect();
+  navagationArray();
 
 
   var url = "http://api.petfinder.com/pet.find?format=json&key=";
@@ -136,6 +145,7 @@ $(document).ready(function() {
 
       //API search default is 25 results
         for (var i = 0; i < results; i++) {
+          var imgResult;
           var newDiv = $("<div class='callback'>" + i);
           var headline = res[i].name.$t;
           var head = $("<h4>").text("My name is: " + headline);
@@ -144,11 +154,11 @@ $(document).ready(function() {
 
           if (res[i].media.hasOwnProperty("photos")) {  
             var img = res[i].media.photos.photo[3].$t; 
-            var imgResult = "<img src=" + img + ">";
+            imgResult = "<img src=" + img + ">";
             newDiv.append(imgResult);
             }
           else {
-            var imgResult = "<img src='icons/adopt-placeholder.png'>";
+            imgResult = "<img src='icons/adopt-placeholder.png'>";
             newDiv.append(imgResult);
             }
 
@@ -220,7 +230,7 @@ $(document).ready(function() {
         lFfilelocation = task.snapshot.downloadURL;
       });       
     });
-  };
+  }
 
   //Function for SHELTER FIND 
   $(document).on("click", ".shelter_search", function search () {
@@ -301,17 +311,17 @@ $(document).ready(function() {
        if (childSnapshot.val().lFsex === sexSearch) {
         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-          " </td><td> " + childSnapshot.val().lostAndFound +
-          " </td><td> " + childSnapshot.val().lFdate +
           " </td><td> " + childSnapshot.val().lFanimal +
           " </td><td> " + childSnapshot.val().lFsex +
           " </td><td> " + childSnapshot.val().lFsize +
           " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +  
           " </td><td> " + childSnapshot.val().lFzip + 
           " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
 
           
-       };
+       }
 
       });
     }//end of if nameSearch===""
@@ -322,12 +332,12 @@ $(document).ready(function() {
        if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-          " </td><td> " + childSnapshot.val().lostAndFound +
-          " </td><td> " + childSnapshot.val().lFdate +
           " </td><td> " + childSnapshot.val().lFanimal +
           " </td><td> " + childSnapshot.val().lFsex +
           " </td><td> " + childSnapshot.val().lFsize +
           " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +  
           " </td><td> " + childSnapshot.val().lFzip + 
           " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
           }
@@ -392,20 +402,20 @@ $(document).ready(function() {
   // Update Pet List
   database.ref().on("child_added", function(childSnapshot) {
 
-    id = childSnapshot.key;//captures unique key value
+    var lFkeyChild = childSnapshot.key;//captures unique key value
 
     // full list of pets
-    $("#petList").append("<tr><td> " + "image" +
-      " </td><td> " + childSnapshot.val().lostAndFound +
+    $("#petList").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +     
       " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-      " </td><td> " + childSnapshot.val().lFdate +
       " </td><td> " + childSnapshot.val().lFanimal +
-      " </td><td> " + childSnapshot.val().lFsize +
       " </td><td> " + childSnapshot.val().lFsex +
+      " </td><td> " + childSnapshot.val().lFsize +
       " </td><td> " + childSnapshot.val().lFage +
+      " </td><td> " + childSnapshot.val().lostAndFound +   
+      " </td><td> " + childSnapshot.val().lFdate +  
       " </td><td> " + childSnapshot.val().lFzip +
       " </td><td> " + childSnapshot.val().lFemail +
-      " </td><td> " + "<button id='"+id+"'class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
+      " </td><td> " + "<button id='" + lFkeyChild + "'class=delete style='background: url(icons/remove.png)'></button>" + " </td></tr>");
 
       // Handle the errors
   }, function(errorObject) {
