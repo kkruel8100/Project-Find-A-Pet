@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.scss">
   </head>
 
   <body>
@@ -38,20 +38,26 @@
 	    </div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+            <img class="img-rounded" id="dog" src="icons/dog_images/dog5.jpeg">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
           <div class="panel panel-default">
           <div class="panel-heading">
           <h1 class="panel-title">Why Pet S.O.S?</h1>
           </div>
             <div id="aboutUs" class="panel-body">
-            Pet S.O.S. was created to help reunite lost cats and dogs with their owners by utilizing both a nationwide pet finder database composed of shelter animals and a lost and found reportable database.  We are here to help you search for your lost pet and report one you find.
+            Pet S.O.S. was created to help reunite lost cats and dogs with their owners by utilizing both a nationwide pet finder database composed of shelter animals and a Lost & Found reportable database.  We are here to help you search for your lost pet and report one you find.
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="panel panel-default">
           <div class="panel-heading">
           <h1 class="panel-title"><a href="FindAPet_Shelter.html">Shelter Pet Finder</a></h1>
@@ -65,7 +71,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="panel panel-default">
           <div class="panel-heading">
           <h1 class="panel-title"><a href="Lost&Found.html">Lost and Found Pet Finder</a></h1>
@@ -74,17 +80,20 @@
              <p>Search the database that users have contributed information and images of pets lost or found.  If you find a match, contact the individual.</p>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
           <div class="panel panel-default">
           <div class="panel-heading">
           <h1 class="panel-title"><a href="AddAPet.html">Add a Pet</a></h1>
           </div>
             <div id="addPet" class="panel-body">
              <p>If you lost or found a cat or dog and can’t find matches on Pet S.O.S., sign in and post a listing with information and an image.  Other people can contact you, if they match your listing.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+            <img class="img-rounded" id="cat" src="icons/cat_images/cat6.jpg">
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.scss">
   </head>
 
   <body>
@@ -38,35 +38,40 @@
     
       <!--Find a Pet in Shelters - Petfinder API -->    
       <div class="row"><!--beginning of Search Shelters & Find A Shelter div-->
-        <div class="col-sm-6">
+
+        <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Find Your Pet!</h3>  
-            </div>  
-            <form id="sheltersearch">
-              <div class="form-group">
-                  <label for="pet-type">Type</label><br>
-                  <select class="pet-type" id="animalArray"></select>    
+
+            </div> 
+              <div class="panel-body">
+                <form id="sheltersearch">
+                  <div class="form-group">
+                      <label for="pet-type">Type</label><br>
+                      <select class="pet-type" id="animalArray"></select>    
+                  </div>
+                  <div class="form-group">
+                      <label for="pet-size">Size</label><br>
+                      <select class="pet-size" id="sizeArray"></select>
+                  </div>
+                  <div class="form-group">
+                      <label for="pet-sex">Sex</label><br>
+                      <select class="pet-size" id="sexArray"></select>
+                  </div>
+                  <div class="form-group">
+                      <label for="pet-age">Age</label>
+                      <select class="form-control" id="ageArray"></select>
+                  </div>
+                  <div class="form-group field_1">
+                      <label for="Textarea">Zip Code</label>              
+                      <input type="text" maxlength="5" id="zipCode">
+                  </div>
+                  <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
+                  <button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
+                </form>
+
               </div>
-              <div class="form-group">
-                  <label for="pet-size">Size</label><br>
-                  <select class="pet-size" id="sizeArray"></select>
-              </div>
-              <div class="form-group">
-                  <label for="pet-sex">Sex</label><br>
-                  <select class="pet-size" id="sexArray"></select>
-              </div>
-              <div class="form-group">
-                  <label for="pet-age">Age</label>
-                  <select class="form-control" id="ageArray"></select>
-              </div>
-              <div class="form-group field_1">
-                  <label for="Textarea">Zip Code</label><br>             
-                  <input type="text" maxlength="5" id="zipCode">
-              </div>
-              <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
-              <button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
-            </form>
           </div>
         </div>
          
@@ -85,13 +90,20 @@
           <div id="google_search">Google Map Place holder</div>
         </div>
         
-      </div><!--close of row-->    
-      <div class="row"><!--Start of results Row-->
-        <div class="col-sm-12">
-          <div class="results">
-            <h3><i class="fa fa-table"></i>Search Results Shelter Pets</h3>    
-          </div>  
+
+
+      </div><!--close of row-->  
+        
+       <h2>Search Results Shelter Pets</h2>
+      <div class="row">
+        <div class="col-md-12 col-center-block">
+          <div class="thumbnail">
+              <div class="results">
+              <i class="fa fa-table"></i>
+              </div>
+          </div>
         </div>
+      </div>
 
  <!-- Successful Add Modal -->
                 <div class="modal fade" id="myModal">
@@ -129,6 +141,7 @@
 
       </div><!--End of results Row--> 
     </div><!--container close -->    
+
     
     <!-- Firebase Reference -->
    
