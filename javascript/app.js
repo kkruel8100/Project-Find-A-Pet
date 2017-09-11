@@ -102,22 +102,22 @@ $(document).ready(function() {
   }
 
   //Function to append the table for user view
-  function addTableResults() {
+  // function addTableResults() {
 
-    database.ref().on("child_added", function(childSnapshot) {
+  //   database.ref().on("child_added", function(childSnapshot) {
 
-    $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
-          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-          " </td><td> " + childSnapshot.val().lFanimal +
-          " </td><td> " + childSnapshot.val().lFsex +
-          " </td><td> " + childSnapshot.val().lFsize +
-          " </td><td> " + childSnapshot.val().lFage +
-          " </td><td> " + childSnapshot.val().lostAndFound +
-          " </td><td> " + childSnapshot.val().lFdate +  
-          " </td><td> " + childSnapshot.val().lFzip + 
-          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
-    });
-  }
+  //   $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+  //         " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+  //         " </td><td> " + childSnapshot.val().lFanimal +
+  //         " </td><td> " + childSnapshot.val().lFsex +
+  //         " </td><td> " + childSnapshot.val().lFsize +
+  //         " </td><td> " + childSnapshot.val().lFage +
+  //         " </td><td> " + childSnapshot.val().lostAndFound +
+  //         " </td><td> " + childSnapshot.val().lFdate +  
+  //         " </td><td> " + childSnapshot.val().lFzip + 
+  //         " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
+  //   });
+  // }
 
   //Run dropdown functions
   navagationArray();
@@ -228,20 +228,26 @@ $(document).ready(function() {
          method: "GET",
          dataType:"jsonp"
         })
-        // .fail(function() {
-        //   alert("failure");
-        // })
+    
         .done(function(response) {
           var res = response.petfinder.shelter;
-          // console.log(res);
-        //API search returns 1 shelter
+          
+          //API search returns 1 shelter
        
           var shelDiv = $("<div class='shelterFind'>");
+   
+          //Captures if no match on shelter id
+          if (!res) {  
+            $("#shelterID_search").append(shelDiv);
+            shelDiv.html("<b>No results found. Please verify the Shelter ID.</b>");
+          }
           
+          else {
           var findName = res.name.$t;
           var shelName = $("<h4>").text("Shelter: " + findName);
           shelDiv.append(shelName);
-         
+          
+          
           var address = res.address1.$t;
           var addResult = $("<p>").text(address);
           shelDiv.append(addResult);
@@ -267,7 +273,7 @@ $(document).ready(function() {
           shelDiv.append(emaResult);
 
           $("#shelterID_search").append(shelDiv);
-        
+          }
         });//end of response function
 
         clearField();   
@@ -293,8 +299,19 @@ $(document).ready(function() {
       
       ref.orderByChild("lFanimal").equalTo(aniSearch).on("child_added", function(childSnapshot) {
 
-       if (childSnapshot.val().lFsex === sexSearch) {
-        addTableResults();        
+        if (childSnapshot.val().lFsex === sexSearch) {
+         //Table results are dependent on filter - can not create a universal function to be used in both if and else 
+         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+          " </td><td> " + childSnapshot.val().lFanimal +
+          " </td><td> " + childSnapshot.val().lFsex +
+          " </td><td> " + childSnapshot.val().lFsize +
+          " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +  
+          " </td><td> " + childSnapshot.val().lFzip + 
+          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
+        // addTableResults();        
        }
 
       });
@@ -303,9 +320,20 @@ $(document).ready(function() {
     else {
       ref.orderByChild("lFname").equalTo(nameSearch).on("child_added", function(childSnapshot) {
 
-       if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
-         addTableResults(); 
-          }
+        if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
+         // addTableResults(); 
+         //Table results are dependent on filter - can not create a universal function to be used in both if and else 
+         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+          " </td><td> " + childSnapshot.val().lFanimal +
+          " </td><td> " + childSnapshot.val().lFsex +
+          " </td><td> " + childSnapshot.val().lFsize +
+          " </td><td> " + childSnapshot.val().lFage +
+          " </td><td> " + childSnapshot.val().lostAndFound +
+          " </td><td> " + childSnapshot.val().lFdate +  
+          " </td><td> " + childSnapshot.val().lFzip + 
+          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
+        }
       });
     }//end of else 
     if ($('#pFresults').html() == '') {
