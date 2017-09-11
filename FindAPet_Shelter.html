@@ -12,7 +12,7 @@
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  
 
     <link rel="stylesheet" type="text/css" href="assets/CSS/style.scss">
   </head>
@@ -48,39 +48,39 @@
               <div class="panel-body">
                 <form id="sheltersearch">
                   <div class="form-group">
-                      <label for="pet-type">Type</label><br>
+                      <label>Type</label><br>
                       <select class="pet-type" id="animalArray"></select>    
                   </div>
                   <div class="form-group">
-                      <label for="pet-size">Size</label><br>
+                      <label>Size</label><br>
                       <select class="pet-size" id="sizeArray"></select>
                   </div>
                   <div class="form-group">
-                      <label for="pet-sex">Sex</label><br>
+                      <label>Sex</label><br>
                       <select class="pet-size" id="sexArray"></select>
                   </div>
                   <div class="form-group">
-                      <label for="pet-age">Age</label>
+                      <label>Age</label>
                       <select class="form-control" id="ageArray"></select>
                   </div>
                   <div class="form-group field_1">
-                      <label for="Textarea">Zip Code</label>              
+                      <label>Zip Code</label>              
                       <input type="text" maxlength="5" id="zipCode">
                   </div>
                   <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
                   <button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
                 </form>
 
-              </div>
-          </div>
-        </div>
+              </div><!--end of panel body -->
+          </div><!--end of panel -->
+        </div><!--end of column -->
          
         <div class="col-sm-6">
           <h3 class="panel-title">Find Shelter Address</h3>
           <div id="shelterfind_form">
             <form>
               <div class="form-group">
-                <label for="shelter">Shelter ID</label><br>  
+                <label>Shelter ID</label><br>  
                 <input type="text" name="shelter" id="shelterID">   
               </div> 
               <button type="button" class="btn btn-secondary shelter_search"><i class="fa fa-search"></i>Search</button>
@@ -103,7 +103,7 @@
               </div>
           </div>
         </div>
-      </div>
+
 
  <!-- Successful Add Modal -->
                 <div class="modal fade" id="myModal">
