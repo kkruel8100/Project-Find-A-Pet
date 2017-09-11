@@ -36,27 +36,43 @@ a{
   font-size: 84px;
 }
 
-select {
-  width: 100px;
-
+.delete{
+  width: 20px;
+  height: 20px;
 }
 
-option {
-  text-align: center;
+.callback p{
+  margin-left: 200px;
+  font-size: 16px;
 }
 
-.btn-primary:hover {
-  background: #ffb100;
-  color: color: #000000;
-  -webkit-transition: all 500ms ease;
-  -moz-transition: all 500ms ease;
-  -ms-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease;
+.callback img{
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  width: 180px;
+  height: 215px;
+  border-radius: 25%;
 }
 
-
-#date{
-width: 100%;
+.callback{
+  margin-left: 5%;
+  margin-top: 15px;
+  display: inline-block;
+  align-items: middle;
 }
 
+.label-primary{
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+#dog{
+  width: 100%;
+  height: 310px;
+}
+
+#cat{
+  width: 100%;
+  height: 250px;
+}
