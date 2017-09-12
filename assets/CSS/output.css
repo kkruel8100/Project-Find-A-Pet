@@ -1,0 +1,83 @@
+body {
+  font: 150% Helvetica, sans-serif;
+  color: #696969; }
+
+.panel-title {
+  font: 125% Helvetica, sans-serif;
+  font-weight: 600;
+  color: #696969; }
+
+.nav > li > a {
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #696969; }
+
+.jumbotron {
+  background: #a1d6ff;
+  color: white;
+  margin-top: 15px; }
+
+.jumbotron h1 {
+  font-size: 84px; }
+  @media screen and (max-width: 830px) {
+    .jumbotron h1 {
+      font-size: 55px; } }
+
+.navbar-default {
+  margin-left: 10px;
+  border-radius: 5px; }
+
+.img-rounded {
+  float: right; }
+
+.container-fluid {
+  background-image: url("../../icons/grey-linen.jpg"); }
+
+.panel-default > .panel-heading {
+  background: #a1d6ff;
+  border: 1px solid #a1d6ff; }
+
+a {
+  color: #000000; }
+
+.delete {
+  width: 20px;
+  height: 20px; }
+
+.callback p {
+  margin-left: 200px;
+  font-size: 16px; }
+
+.callback img {
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  width: 200px;
+  height: auto;
+  border-radius: 10%; }
+
+.callback {
+  margin-left: 5%;
+  margin-top: 15px;
+  display: inline-block;
+  align-items: middle; }
+
+.label-primary {
+  margin-right: 15px;
+  margin-top: 20px; }
+
+#dog {
+  width: 100%;
+  height: auto; }
+
+#cat {
+  width: 100%;
+  height: auto; }
+
+td img {
+  width: 125px;
+  border-radius: 15%; }
+
+/*# sourceMappingURL=output.css.map */
