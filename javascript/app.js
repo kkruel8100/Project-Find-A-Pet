@@ -101,24 +101,6 @@ $(document).ready(function() {
     $(".callback").remove();
   }
 
-  //Function to append the table for user view
-  // function addTableResults() {
-
-  //   database.ref().on("child_added", function(childSnapshot) {
-
-  //   $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
-  //         " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-  //         " </td><td> " + childSnapshot.val().lFanimal +
-  //         " </td><td> " + childSnapshot.val().lFsex +
-  //         " </td><td> " + childSnapshot.val().lFsize +
-  //         " </td><td> " + childSnapshot.val().lFage +
-  //         " </td><td> " + childSnapshot.val().lostAndFound +
-  //         " </td><td> " + childSnapshot.val().lFdate +  
-  //         " </td><td> " + childSnapshot.val().lFzip + 
-  //         " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
-  //   });
-  // }
-
   //Run dropdown functions
   navagationArray();
   dropdownArray(); 
@@ -301,17 +283,16 @@ $(document).ready(function() {
 
         if (childSnapshot.val().lFsex === sexSearch) {
          //Table results are dependent on filter - can not create a universal function to be used in both if and else 
-         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
-          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-          " </td><td> " + childSnapshot.val().lFanimal +
-          " </td><td> " + childSnapshot.val().lFsex +
-          " </td><td> " + childSnapshot.val().lFsize +
-          " </td><td> " + childSnapshot.val().lFage +
-          " </td><td> " + childSnapshot.val().lostAndFound +
-          " </td><td> " + childSnapshot.val().lFdate +  
-          " </td><td> " + childSnapshot.val().lFzip + 
-          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
-        // addTableResults();        
+          $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+           " </td><td> " + childSnapshot.val().lFanimal +
+           " </td><td> " + childSnapshot.val().lFsex +
+           " </td><td> " + childSnapshot.val().lFsize +
+           " </td><td> " + childSnapshot.val().lFage +
+           " </td><td> " + childSnapshot.val().lostAndFound +
+           " </td><td> " + childSnapshot.val().lFdate +  
+           " </td><td> " + childSnapshot.val().lFzip + 
+           " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");   
        }
 
       });
@@ -321,7 +302,7 @@ $(document).ready(function() {
       ref.orderByChild("lFname").equalTo(nameSearch).on("child_added", function(childSnapshot) {
 
         if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
-         // addTableResults(); 
+          
          //Table results are dependent on filter - can not create a universal function to be used in both if and else 
          $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
