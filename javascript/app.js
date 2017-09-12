@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+//Legend for Below:
+  // Firebase variables and configuration
+  // Global variables
+  // Functions - universal and/or page 
+  // Run Page Functions
+  // Click Functions for Pet API
+  // Functions for Firebase
+
+
   var config = {
     apiKey: "AIzaSyDv05y1-GztFyliR0L42WZll3Le0lQxoyk",
     authDomain: "project-find-a-pet.firebaseapp.com",
@@ -13,6 +22,10 @@ $(document).ready(function() {
   var database = firebase.database();
 
   // Initial Values
+
+  //Petfinder API variables
+  var url = "http://api.petfinder.com/pet.find?format=json&key=";
+  var api = "9503ebe5eee4d378650ea8929cf9c5b7";
 
   //Search Petfinder variables
   var animal = ["cat", "dog"];//Note: API only accepts lower case animal in search url
@@ -45,40 +58,26 @@ $(document).ready(function() {
       "<li><a href='Admin.html'>Admin Panel</a></li>");
   }
 
-  function animalSelect() {
+  function dropdownArray () {
     for (i=0; i<animal.length; i++) {
       $("#animalArray").append("<option data-animal='" + animal[i] + "'>" + animal[i] + "</option>");
-    }    
-  }
-
-  function sexSelect() {
+    }
     for (i=0; i<sex.length; i++) {
       $("#sexArray").append("<option data-sex='" + sex[i] + "'>" + sex[i] + "</option>");
-    }    
-  }
-
-  function sizeSelect() {
+    } 
     for (i=0; i<size.length; i++) {
       $("#sizeArray").append("<option data-size='" + size[i] + "'>" + size[i] + "</option>");
-    }    
-  }
-
-  function ageSelect() {
-    for (i=0; i<age.length; i++) {
-      $("#ageArray").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
-    }    
-  }
-
-  function lostAndFoundSelect() {
+    } 
     for (i=0; i<lostAndFound.length; i++) {
       $("#lostFound_input").append("<option data-category='" + lostAndFound[i] + "'>" + lostAndFound[i] + "</option>");
-      }    
+      } 
+    for (i=0; i<age.length; i++) {
+      $("#ageArray").append("<option data-age='" + age[i] + "'>" + age[i] + "</option>");
+    }      
   }
 
   //function to clear zip field after submit key
   function clearField() {
-    // $("#zipCode").val("");
-    // $("#shelterID").val("");
     if (document.getElementById('shelterID')){
       $("#shelterID").val("");
     }
@@ -95,34 +94,24 @@ $(document).ready(function() {
     if (document.getElementById('query')){
       $("#query")[0].reset();
     }
-
    }
 
   //function to remove Search results to be used in multiple places
   function callback() {
     $(".callback").remove();
-    // $(".shelter").remove();
   }
+
+  //Run dropdown functions
+  navagationArray();
+  dropdownArray(); 
 
   //function for clear button to remove elements in callback area
   $(".clear").on("click", function clear () {
     callback();
-  }); 
-
-  //Run dropdown functions
-  animalSelect();
-  sexSelect();
-  sizeSelect();
-  ageSelect();
-  lostAndFoundSelect();
-  navagationArray();
-
-
-  var url = "http://api.petfinder.com/pet.find?format=json&key=";
-  var api = "9503ebe5eee4d378650ea8929cf9c5b7";
+  });  
 
   //Function for search button to capture variables and displayPetFinds
-  $(document).on("click", ".search", function search () {
+  $(document).on("click", ".search", function petsearchAPI () {
       
     callback();
 
@@ -193,70 +182,53 @@ $(document).ready(function() {
           $(".results").append(newDiv);
         }//end of for
 
-      });//end of response function
+        });//end of response function
 
         clearField();   
     }//end of if statement
-
-//Need to replace alert with Modal JS      
+     
     else {
       $("#badInputModal").modal({show: true});
     }
-  });//end of search click function  
-
-  // Listen for file selection
-  if ($('#file-input').length) {  
-    lFimage.addEventListener('change', function(e) {
-      //Get file
-      file=e.target.files[0];
-      
-      //Create a storage ref
-      var storageRef = firebase.storage().ref('animalphotos/' + file.name);
-      
-      //Upload file
-      var task = storageRef.put(file);
-      
-      //Update progress bar
-      task.on('state_changed',
-      function progress(snapshot) {
-        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        uploader.value = percentage;
-      },
-      
-      function error(err) {  
-      },
-      
-      function complete(snapshot) {
-        lFfilelocation = task.snapshot.downloadURL;
-      });       
-    });
-  }
+  });//end of Pet Shelter search click function  
 
   //Function for SHELTER FIND 
-  $(document).on("click", ".shelter_search", function search () {
+  $(document).on("click", ".shelter_search", function shelsearchAPI () {
     
     event.preventDefault();  
-    $(".shelter").remove();
+    $(".shelterFind").remove();
 
     var shelsearch = $("#shelterID").val();
     var findID = shelsearch.toUpperCase();
     var url = "http://api.petfinder.com/shelter.get?format=json&key=";
     var queryURL = url + api + "&id=" + findID;
 
+    if (shelsearch.length>=2) {
+
         $.ajax({
          url: queryURL,
          method: "GET",
          dataType:"jsonp"
-        }).done(function(response) {
+        })
+    
+        .done(function(response) {
           var res = response.petfinder.shelter;
-      
-        //API search returns 1 shelter
-       
-          var shelDiv = $("<div class='shelter'>");
           
+          //API search returns 1 shelter
+       
+          var shelDiv = $("<div class='shelterFind'>");
+   
+          //Captures if no match on shelter id
+          if (!res) {  
+            $("#shelterID_search").append(shelDiv);
+            shelDiv.html("<b>No results found. Please verify the Shelter ID.</b>");
+          }
+          
+          else {
           var findName = res.name.$t;
           var shelName = $("<h4>").text("Shelter: " + findName);
           shelDiv.append(shelName);
+          
           
           var address = res.address1.$t;
           var addResult = $("<p>").text(address);
@@ -283,21 +255,22 @@ $(document).ready(function() {
           shelDiv.append(emaResult);
 
           $("#shelterID_search").append(shelDiv);
-        
-      });//end of response function
+          }
+        });//end of response function
 
         clearField();   
-
-    });  
-
-//Function for search button to capture variables and displayPetFinds
- $(document).on("click", ".firebase_search", function search () {
+    }//end of if statement   
+    else {
+      $("#badInputModal").modal({show: true});
+    } 
+  });//end of shelsearchAPI function 
   
-    
+  //Function for search button to capture variables and displayPetFinds
+  $(document).on("click", ".firebase_search", function fbSearch () {
+   
     //Clear the div so it can populate new results
     $("#pFresults").empty();
-
-    
+   
     var nameSearch = $("#nameFB").val().trim().toLowerCase();
     var aniSearch = $("#animalArray").val();
     var sexSearch = $("#sexArray").val();
@@ -308,19 +281,18 @@ $(document).ready(function() {
       
       ref.orderByChild("lFanimal").equalTo(aniSearch).on("child_added", function(childSnapshot) {
 
-       if (childSnapshot.val().lFsex === sexSearch) {
-        $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
-          " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
-          " </td><td> " + childSnapshot.val().lFanimal +
-          " </td><td> " + childSnapshot.val().lFsex +
-          " </td><td> " + childSnapshot.val().lFsize +
-          " </td><td> " + childSnapshot.val().lFage +
-          " </td><td> " + childSnapshot.val().lostAndFound +
-          " </td><td> " + childSnapshot.val().lFdate +  
-          " </td><td> " + childSnapshot.val().lFzip + 
-          " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
-
-          
+        if (childSnapshot.val().lFsex === sexSearch) {
+         //Table results are dependent on filter - can not create a universal function to be used in both if and else 
+          $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
+           " </td><td> " + childSnapshot.val().lFanimal +
+           " </td><td> " + childSnapshot.val().lFsex +
+           " </td><td> " + childSnapshot.val().lFsize +
+           " </td><td> " + childSnapshot.val().lFage +
+           " </td><td> " + childSnapshot.val().lostAndFound +
+           " </td><td> " + childSnapshot.val().lFdate +  
+           " </td><td> " + childSnapshot.val().lFzip + 
+           " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");   
        }
 
       });
@@ -329,8 +301,10 @@ $(document).ready(function() {
     else {
       ref.orderByChild("lFname").equalTo(nameSearch).on("child_added", function(childSnapshot) {
 
-       if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
-        $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
+        if (childSnapshot.val().lFsex === sexSearch && childSnapshot.val().lFanimal === aniSearch) {
+          
+         //Table results are dependent on filter - can not create a universal function to be used in both if and else 
+         $("#pFresults").append("<tr><td><img src='" + childSnapshot.val().lFpic + ">'"  +
           " </td><td style='text-transform: capitalize'> " + childSnapshot.val().lFname +
           " </td><td> " + childSnapshot.val().lFanimal +
           " </td><td> " + childSnapshot.val().lFsex +
@@ -340,23 +314,48 @@ $(document).ready(function() {
           " </td><td> " + childSnapshot.val().lFdate +  
           " </td><td> " + childSnapshot.val().lFzip + 
           " </td><td> " + childSnapshot.val().lFemail + " </td></tr>");
-          }
-
-
-        
-
+        }
       });
     }//end of else 
     if ($('#pFresults').html() == '') {
-      $("#pFresults").append("No results found");
+      $("#pFresults").html("<b>No results found</b>");
     } 
     clearField();
- });
+  });
 
-     // Capture Add a Pet Click
+  // Listen for file selection
+  if ($('#file-input').length) {  
+    lFimage.addEventListener('change', function(e) {
+      //Get file
+      file=e.target.files[0];
+      
+      //Create a storage ref
+      var storageRef = firebase.storage().ref('animalphotos/' + file.name);
+      
+      //Upload file
+      var task = storageRef.put(file);
+      
+      //Update progress bar
+      task.on('state_changed',
+      function progress(snapshot) {
+        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        uploader.value = percentage;
+      },
+      
+      function error(err) {  
+      },
+      
+      function complete(snapshot) {
+        lFfilelocation = task.snapshot.downloadURL;
+      });//End of progress bar      
+    });//End of event listener
+  }//End of file selection
+
+  //Phase 2 implementation - User signin and validation to add to Pet list
+  // Capture Add a Pet Click
   $("#submit").on("click", function(event) {
     event.preventDefault();
-//Need to check ids if update form when new page is added  
+
     lostAndFound = $("#lostFound_input").val();
     lFname = $("#name_input").val().trim().toLowerCase(); 
     lFdate = $("#date").val().trim();   
@@ -389,17 +388,16 @@ $(document).ready(function() {
 
       // Code to clear input fields
       clearField();
-      //alert("You have added a Pet")
     }//end of if
-
-//Need to replace alert with Modal JS    
+    
     else {
       $("#badInputModal").modal({show: true});
     }//end of else
 
   });//end of click
 
-  // Update Pet List
+  // Function to update Firebase Admin Panel - Captures unique child key and delete button to update screen and firebase database 
+  //Phase 2 implementation - Admin rights - Delete function
   database.ref().on("child_added", function(childSnapshot) {
 
     var lFkeyChild = childSnapshot.key;//captures unique key value
@@ -422,7 +420,7 @@ $(document).ready(function() {
     console.log("Errors handled: " + errorObject.code);
     });
     
-  //delete from view for user and on firebase - need to restrict to admin
+  //Phase 2 implementation - Admin rights - Delete function
   //alerts need to be replaced with modals
   $(document).on("click", ".delete", function(event) {
     var childKey = this.id;

@@ -12,7 +12,7 @@
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  
 
     <link rel="stylesheet" type="text/css" href="assets/CSS/output.css">
   </head>
@@ -47,28 +47,29 @@
               <div class="panel-body">
                 <form id="sheltersearch">
                   <div class="form-group">
-                      <label for="pet-type">Type</label><br>
+                      <label>Type</label><br>
                       <select class="pet-type" id="animalArray"></select>    
                   </div>
                   <div class="form-group">
-                      <label for="pet-size">Size</label><br>
+                      <label>Size</label><br>
                       <select class="pet-size" id="sizeArray"></select>
                   </div>
                   <div class="form-group">
-                      <label for="pet-sex">Sex</label><br>
+                      <label>Sex</label><br>
                       <select class="pet-size" id="sexArray"></select>
                   </div>
                   <div class="form-group">
-                      <label for="pet-age">Age</label>
+                      <label>Age</label>
                       <select class="form-control" id="ageArray"></select>
                   </div>
                   <div class="form-group field_1">
-                      <label for="Textarea">Zip Code</label>              
+                      <label>Zip Code</label>              
                       <input type="text" maxlength="5" id="zipCode">
                   </div>
                   <button type="button" class="btn btn-secondary search"><i class="fa fa-search"></i>Search</button>
                   <button type="button" class="btn btn-secondary clear"><i class="fa fa-trash"></i>Clear Results</button>
                 </form>
+
               </div>
           </div>
         </div>
@@ -87,6 +88,7 @@
                   </div> 
                   <button type="button" class="btn btn-secondary shelter_search"><i class="fa fa-search"></i>Search</button>
                 </form>
+
               </div> 
               <br> 
               <div id="shelterID_search"></div>
@@ -106,7 +108,7 @@
               </div>
           </div>
         </div>
-      </div>
+
 
  <!-- Successful Add Modal -->
                 <div class="modal fade" id="myModal">
@@ -132,7 +134,7 @@
                         <h3> Error! </h3>
                          </div> 
                           <div class="modal-body">
-                            <p>Please check your zipcode and its format!</p>
+                            <p>Please check you have all information entered correctly!</p>
                           </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
