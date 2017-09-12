@@ -15,9 +15,10 @@
     <!-- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script> -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="assets/CSS/output.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/CSS/style.scss">
   </head>
+
 
 
   <body>
@@ -40,11 +41,17 @@
       </div>
 
       <div class="row"><!--Start of Add a Pet -->
-        <div class="col-sm-12">          
-          <div class="card">
-           <div class="card-body">        
 
-            <form id="addPet">           
+        <div class="col-md-12"> 
+        <div class="panel panel-default"><!--begin panel default--> 
+          <div class="panel-heading"> 
+          <h1 class="panel-title">Report a Pet Lost or Found</h1>
+          </div>
+          <div class="panel-body"><!--begin panel body-->      
+          <div class="card">
+           <div class="card-body">       
+
+            <form id="addPet"></form>        
 
               <div class="form-group">
                 <label>Lost/Found</label>
@@ -84,18 +91,19 @@
                 <input type="text" maxlength="5" id="zipCode">
               </div>
               <div class="form-group">
-  				<label>E-mail</label>
-  				<input type="email" id="email">
-			  </div>
+        				<label>E-mail</label>
+        				<input type="email" id="email">
+      			  </div>
               <div class="image-upload">
                 <label for="file-input">Image Upload</label>
                 <input id="file-input" type="file" />
                 <progress value="0" max="100" id="uploader">0%</progress>
               </div>
               <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-              
-                
+            </div>
+          </div>
 
+              
                 <!-- Successful Add Modal -->
                 <div class="modal fade" id="myModal">
                   <div class="modal-dialog">
@@ -128,7 +136,6 @@
                       </div>
                   </div>
                 </div>
-
             </form><!--end of form -->
            </div><!--end of card body -->
           </div><!--end of card -->
