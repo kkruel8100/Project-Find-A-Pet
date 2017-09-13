@@ -24,7 +24,7 @@ $(document).ready(function() {
   // Initial Values
 
   //Petfinder API variables
-  var url = "https://api.petfinder.com/pet.find?format=json&key=";
+  var url = "http://api.petfinder.com/pet.find?format=json&key=";
   var api = "9503ebe5eee4d378650ea8929cf9c5b7";
 
   //Search Petfinder variables
@@ -427,6 +427,8 @@ $(document).ready(function() {
     database.ref(childKey).remove();
     $(this).closest("tr").remove();
     
-  });  
+  });
+
+
  
 });//document ready
