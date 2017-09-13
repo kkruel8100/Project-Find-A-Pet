@@ -27,9 +27,37 @@ body {
 .navbar-default {
   margin-left: 10px;
   border-radius: 5px; }
+  @media screen and (min-width: 1670px) {
+    .navbar-default {
+      width: 225%;
+      margin-left: 30px; } }
 
 .img-rounded {
   float: right; }
+  @media screen and (min-width: 1670px) {
+    .img-rounded {
+      width: 12%;
+      margin-bottom: 50px; } }
+
+@media screen and (min-width: 1670px) {
+  #whyUs {
+    font: 150% Helvetica, sans-serif; } }
+
+@media screen and (min-width: 1670px) {
+  #shelterFinder {
+    font: 150% Helvetica, sans-serif; } }
+
+@media screen and (min-width: 1670px) {
+  #lostFound {
+    font: 150% Helvetica, sans-serif; } }
+
+@media screen and (min-width: 1670px) {
+  #reportPet {
+    font: 150% Helvetica, sans-serif; } }
+
+@media screen and (min-width: 1670px) {
+  #about {
+    font: 150% Helvetica, sans-serif; } }
 
 .container-fluid {
   background-image: url("../../icons/grey-linen.jpg"); }
@@ -45,10 +73,6 @@ a {
   width: 20px;
   height: 20px; }
 
-.callback p {
-  margin-left: 200px;
-  font-size: 16px; }
-
 .callback img {
   float: left;
   display: inline-block;
@@ -57,6 +81,9 @@ a {
   width: 200px;
   height: auto;
   border-radius: 10%; }
+.callback p {
+  margin-left: 200px;
+  font-size: 16px; }
 
 .callback {
   margin-left: 5%;
