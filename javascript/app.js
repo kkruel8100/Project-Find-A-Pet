@@ -426,6 +426,7 @@ $(document).ready(function() {
     var childKey = this.id;
     database.ref(childKey).remove();
     $(this).closest("tr").remove();
+    $("#deleteModal").modal({show: true});
     
   });
 
